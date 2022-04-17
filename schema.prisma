@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://tima:e5IMJtfq5IPe6W@localhost:5432/mono_new?schema=public"
+}
+
+model Guild {
+  id                   String                @id
+  language             String                @default("en")
+  modules              Json                  @default("{}")
+  reactionRoleMessages ReactionRoleMessage[]
+//  ModerationNotes      ModerationNote[]
+  Warnings                Warning[]
+}
+
+model Member {
+  guildId String
+  userId  String
+
+  @@id([guildId, userId])
+}
+
+model User {
+  id     String @id
+  prefix String
+}
+
+model ReactionRoleMessage {
+  id            String         @id
+  channelId     String
+  guild         Guild          @relation(fields: [guildId], references: [id])
+  guildId       String
+  mode          Int
+  reactionRoles ReactionRole[]
+}
+
+model ReactionRole {
+  roleId    String              @id
+  emoji     String
+  message   ReactionRoleMessage @relation(fields: [messageId], references: [id])
+  messageId String
+}
+
+model ActivePrivateRoom {
+  channelId String @id
+  hostId    String
+  locked    Boolean @default(false)
+  hidden    Boolean @default(false)
+}
+
+// Will be added in the future
+
+//model ModerationCase {
+//  globalId   Int      @id @default(autoincrement())
+//  id         Int
+//  guild      Guild    @relation(fields: [guildId], references: [id])
+//  executorId String
+//  userId     String
+//  reason     String?
+//  action     String
+//  createdAt  DateTime @default(now())
+//  User       User     @relation(fields: [userId], references: [id])
+//  guildId    String
+//}
+
+//model ModerationNote {
+//  globalId   Int      @id @default(autoincrement())
+//  id         Int
+//  guild      Guild    @relation(fields: [guildId], references: [id])
+//  executorId String
+//  userId     String
+//  content    String
+//  createdAt  DateTime @default(now())
+//  guildId    String
+//  deleted    Boolean  @default(false)
+//}
+
+model Warning {
+  globalId   Int      @id @default(autoincrement())
+  id         Int
+  guild      Guild    @relation(fields: [guildId], references: [id])
+  executorId String
+  userId     String
+  content    String?
+  createdAt  DateTime @default(now())
+  guildId    String
+  deleted    Boolean  @default(false)
+}
+
+//model CommandResult {
+//    id          Int             @id @autoincrement
+//    commandId   String
+//    executor    String
+//
+//}

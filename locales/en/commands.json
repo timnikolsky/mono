@@ -1,0 +1,431 @@
+{
+	"bot-info": {
+		"_data": {
+			"description": "Mono statistics and useful links"
+		},
+		"description": "Mono was designed with special attention to comfort usability and high customization to help you to get rid of overage of bots.",
+		"servers": "Servers",
+		"supportServer": "Support server",
+		"title": "Mono",
+		"users": "Users",
+		"website": "Website"
+	},
+	"ping": {
+		"_data": {
+			"description": "Ping-pong!"
+		},
+		"pong": "Pong! My ping is `{{ping}}`ms"
+	},
+	"role": {
+		"_data": {
+			"description": "Get information about a role",
+			"options": {
+				"role": {
+					"description": "Role you want to get information about"
+				}
+			}
+		},
+		"position": "Position",
+		"hoist": "Displayed Separately",
+		"mentionable": "Mentionable",
+		"created": "Created at",
+		"permissions": "Permissions"
+	},
+	"user": {
+		"_data": {
+			"description": "Get information about a user",
+			"options": {
+				"user": {
+					"description": "User you want to get information about. Leave blank to see information about yourself."
+				}
+			}
+		},
+		"created": "Account Created",
+		"joined": "Joined Server",
+		"avatar": "Avatar",
+		"permissions": "Permissions"
+	},
+	"server": {
+		"_data": {
+			"description": "Get information about a server"
+		},
+		"owner": "Owner",
+		"members": "Members",
+		"created": "Created at"
+	},
+	"autorole": {
+		"_data": {
+			"subcommands": {
+				"set": {
+					"description": "Set new autorole, which will be assigned to user when they join",
+					"options": {
+						"role": {
+							"description": "Role you want to be set as autorole"
+						}
+					}
+				},
+				"disable": {
+					"description": "Disable autorole on this server"
+				}
+			}
+		},
+		"managedRole": "This role is managed by bot or integration, I can't use it as autorole!",
+		"cantAccessRole": "I can't access this role! Make sure it takes place below any of roles I have.",
+		"autoroleChanged": "Autorole has been changed to {{newAutorole}}",
+		"disabled": "Autorole has been disabled"
+	},
+	"emoji": {
+		"_data": {
+			"description": "Get information about an emoji",
+			"options": {
+				"emoji": {
+					"description": "Emoji you want to get information about"
+				}
+			}
+		},
+		"image": "Image",
+		"created": "Created at",
+		"description": "A default emoji. You can use this emoji everywhere on Discord.\n[Emojipedia]({{link}})"
+	},
+	"language": {
+		"_data": {
+			"description": "Change the language Mono uses on this server",
+			"options": {
+				"language-code": {
+					"description": "2-digit language code"
+				}
+			}
+		},
+		"languageChanged": "Language set to **English** successfully. It may take some time to update slash commands."
+	},
+	"reaction-roles": {
+		"_data": {
+			"subcommands": {
+				"create": {
+					"description": "Create new reaction role",
+					"options": {
+						"message": {
+							"description": "Link to message you want to add reactions under"
+						},
+						"role": {
+							"description": "Role you want to be (un)assigned from user when they react"
+						},
+						"emoji": {
+							"description": "Emoji user has to click on to get this role"
+						}
+					}
+				},
+				"list": {
+					"description": "Get list of all reaction roles on this server"
+				},
+				"delete": {
+					"subcommands": {
+						"message": {
+							"description": "Delete reaction role message and all reaction roles attached to it (message remains)",
+							"options": {
+								"message": {
+									"description": "Reaction role message you want to delete"
+								}
+							}
+						},
+						"role": "Delete reaction role",
+						"option": {
+							"role": {
+								"description": "Reaction role you want to delete"
+							}
+						}
+					}
+				}
+			}
+		},
+		"managedRole": "This role is managed by bot or integration, I can't use it as autorole!",
+		"cantAccessRole": "I can't access this role! Make sure it takes place below any of roles I have.",
+		"missingPermissions": "I don't have enough permissions to add reactions on this message!",
+		"alreadyExists": "This reaction role already exists",
+		"creationDescription": "This reaction role message doesn't exist yet! Create one by selecting mode below:",
+		"chooseMode": "Choose mode",
+		"modes": {
+			"standard": {
+				"name": "Standard",
+				"description": "User gets role when react and looses it when removes reaction"
+			},
+			"unique": {
+				"name": "Unique",
+				"description": "User can choose only one role"
+			},
+			"addOnly": {
+				"name": "Add Only",
+				"description": "User can get role, but can't loose it"
+			},
+			"removeOnly": {
+				"name": "Remove only",
+				"description": "User looses role when react and can't get it back"
+			}
+		},
+		"created": "Reaction role created! ({{emoji}} › {{role}})",
+		"noMessages": "This server has no reaction role messages yet. Use `/reaction-role create` to create one!",
+		"message": "Message",
+		"mode": "Mode",
+		"roles": "Roles",
+		"messageNotFound": "Couldn't find that reaction role message",
+		"messageDeleted": "Reaction role message has been deleted",
+		"reactionRoleNotFound": "Couldn't find that reaction role",
+		"reactionRoleDeleted": "Reaction role has been deleted"
+	},
+	"ban": {
+		"_data": {
+			"description": "Ban a user from the server",
+			"options": {
+				"user": {
+					"description": "User you want to ban"
+				},
+				"reason": {
+					"description": "Reason of the ban"
+				},
+				"clean-days": {
+					"description": "Number of days to delete messages for (from 0 to 7)"
+				}
+			}
+		},
+		"memberNotFound": "Couldn't find that member",
+		"cantBanSelf": "You can't ban yourself",
+		"missingPermissions": "I have no permissions to ban this member",
+		"superior": "You can't ban this member",
+		"alreadyBanned": "This member is already banned",
+		"banned": "{{executor}} banned {{member}} (*{{reason}}*)"
+	},
+	"kick": {
+		"_data": {
+			"description": "Kick a user from the server",
+			"options": {
+				"user": {
+					"description": "User you want to kick"
+				},
+				"reason": {
+					"description": "Reason of the kick"
+				}
+			}
+		},
+		"memberNotFound": "Couldn't find that member",
+		"cantKickSelf": "You can't kick yourself",
+		"missingPermissions": "I have no permissions to kick this member",
+		"superior": "You can't kick this member",
+		"kicked": "{{executor}} kicked {{member}} (*{{reason}}*)"
+	},
+	"purge": {
+		"_data": {
+			"description": "Bulk delete messages in the current channel",
+			"options": {
+				"amount": {
+					"description": "Amount of messages to delete (from 1 to 100)"
+				}
+			}
+		},
+		"deleted": "Deleted {{amount}} messages successfully"
+	},
+	"slowmode": {
+		"_data": {
+			"description": "Change current channel slowmode",
+			"options": {
+				"duration": {
+					"description": "Slowmode duration in seconds"
+				}
+			}
+		},
+		"changed": "Slowmode set to {{duration}} sec",
+		"removed": "Slowmode removed"
+	},
+	"unban": {
+		"_data": {
+			"description": "Remove user ban on the server",
+			"options": {
+				"userid": {
+					"description": "Id of user you want to remove ban from"
+				}
+			}
+		},
+		"invalidId": "Looks like id you provided is invalid. [Where can I find user id?](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)",
+		"notBanned": "User with this id is not banned",
+		"unbanned": "User with id `{{id}}` has been unbanned"
+	},
+	"warn": {
+		"_data": {
+			"subcommands": {
+				"add": {
+					"description": "Warn a user",
+					"options": {
+						"user": {
+							"description": "User you want to warn"
+						},
+						"text": {
+							"description": "Text of the warning"
+						}
+					}
+				},
+				"remove": {
+					"description": "Remove warning from a user",
+					"options": {
+						"warn-id": {
+							"description": "Warning id. Get it using /warnings."
+						}
+					}
+				}
+			}
+		},
+		"memberNotFound": "Couldn't find that member",
+		"cantKickSelf": "You can't warn yourself",
+		"superior": "You can't warn this member",
+		"warned": "{{executor}} warned {{member}} (*{{text}}*)",
+		"noTextProvided": "No text provided",
+		"warningNotFound": "Couldn't find warning with such id",
+		"warningRemoved": "Removed warning from {{user}} successfully"
+	},
+	"warnings": {
+		"_data": {
+			"description": "See user warnings on this server",
+			"options": {
+				"user": {
+					"description": "User whose warnings you want to see"
+				}
+			}
+		},
+		"noWarnings": "This member has no warnings",
+		"noTextProvided": "*No text provided*",
+		"title": "Warnings",
+		"executor": "Given by",
+		"date": "Given at",
+		"warningId": "Warning id"
+	},
+	"module": {
+		"_data": {
+			"subcommands": {
+				"enable": {
+					"description": "Enable module on this server",
+					"options": {
+						"module": "Module you want to enable"
+					}
+				},
+				"disable": {
+					"description": "Enable module on this server",
+					"options": {
+						"module": "Module you want to disable"
+					}
+				},
+				"info": {
+					"description": "Get information about a module",
+					"options": {
+						"module": "Module you want to see information about"
+					}
+				}
+			}
+		},
+		"moduleEnabled": "Module {{module}} has been enabled. It may take some time to update slash commands.",
+		"moduleDisabled": "Module {{module}} has been disabled. It may take some time to update slash commands."
+	},
+	"private": {
+		"_data": {
+			"subcommands": {
+				"default": {
+					"subcommands": {
+						"name": {
+							"description": "Set default private room name",
+							"options": {
+								"name": {
+									"description": "New channel name. Some templates are supported."
+								}
+							}
+						},
+						"limit": {
+							"description": "Set default private room user limit",
+							"options": {
+								"limit": {
+									"description": "Number of users that can be in private room (0-99). Type 0 to disable."
+								}
+							}
+						},
+						"hidden": {
+							"description": "Set whether a private room will be hidden by default",
+							"options": {
+								"hidden": {
+									"description": "Whether a private room will be hidden"
+								}
+							}
+						},
+						"locked": {
+							"description": "Set whether a private room will be locked by default",
+							"options": {
+								"name": {
+									"description": "Whether a private room will be locked"
+								}
+							}
+						}
+					}
+				},
+				"setup": {
+					"description": "Choose private rooms creation channel or create a new one",
+					"options": {
+						"channel": {
+							"description": "Channel for creating private rooms. Leave blank to create automatically."
+						}
+					}
+				},
+				"name": {
+					"description": "Set new private room name",
+					"options": {
+						"name": {
+							"description": "New private room name"
+						}
+					}
+				},
+				"limit": {
+					"description": "Set private room user limit",
+					"options": {
+						"limit": {
+							"description": "Number of users that can be in private room (0-99). Type 0 to disable."
+						}
+					}
+				},
+				"hidden": {
+					"description": "Set whether a private room will be hidden",
+					"options": {
+						"hidden": {
+							"description": "Whether a private room will be hidden"
+						}
+					}
+				},
+				"locked": {
+					"description": "Set whether a private room will be locked",
+					"options": {
+						"locked": {
+							"description": "Whether a private room will be locked"
+						}
+					}
+				}
+			}
+		},
+		"newJoinChannelCategoryName": "Private Rooms",
+		"newJoinChannelName": "Create private room",
+		"cantCreateChannel": "I don't have enough permissions to create new channels!",
+		"joinChannelCreated": "{{channel}} channel created successfully",
+		"joinChannelChanged": "Join channel set to {{channel}}",
+		"defaultNameChanged": "Default private room name has been changed",
+		"defaultLimitChanged": "Default private room user limit has been changed to **{{limit}}**",
+		"defaultLimitDisabled": "Default private room user limit has been changed",
+		"defaultHidden": "Private rooms has been set to be **hidden** by default",
+		"defaultShown": "Private rooms has been set to be **shown** by default",
+		"defaultLocked": "Private rooms has been set to be **locked** by default",
+		"defaultOpened": "Private rooms has been set to be **opened** by default",
+		"mustBeInRoom": "You have to be in your private channel to change it's settings",
+		"notInRoom": "You are in voice, but not in private room! You have to be in your private channel to change it's settings",
+		"notHost": "Only host can change private room settings! You may ask them to transfer you permissions using `/private transfer`",
+		"nameChanged": "Private room name has been changed",
+		"limitChanged": "Private room user limit has been changed to **{{limit}}**",
+		"limitDisabled": "Private room user limit has been disabled",
+		"hidden": "Private room has been hidden",
+		"shown": "Private room has been shown",
+		"locked": "Private room has been locked",
+		"opened": "Private room has been opened",
+		"transferred": "{{oldHost}} transferred his private room to {{newHost}}",
+		"cantTransferToBot": "You can't transfer your private room to bot!"
+	}
+}

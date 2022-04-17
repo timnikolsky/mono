@@ -1,0 +1,14 @@
+{
+	"moderation": {
+		"name": "Moderation (Beta)",
+		"description": "Useful tools for moderators"
+	},
+	"privateRooms": {
+		"name": "Private Rooms",
+		"description": "Automatically creates voice rooms and deletes them, when they are empty. Configure default settings and manage channel permissions!"
+	},
+	"roles": {
+		"name": "Roles",
+		"description": "Easily set up autoroles and reaction roles on your server"
+	}
+}
