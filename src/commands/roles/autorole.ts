@@ -5,7 +5,7 @@ import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
 import { CommandOptionTypes } from '../../enums'
 import RolesModule from '@modules/Roles'
-import { Permissions, Role } from 'discord.js'
+import { Role } from 'discord.js'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -38,8 +38,8 @@ export default class extends Command implements MonoCommand {
 
 			if(
 				!options.role?.managed
-				&& !this.guild.me!.permissions.has(Permissions.FLAGS.MANAGE_ROLES)
-				&& this.guild.me!.roles.highest.comparePositionTo(options.role!) > 0
+				&& !this.guild.members.me!.permissions.has('ManageRoles')
+				&& this.guild.members.me!.roles.highest.comparePositionTo(options.role!) > 0
 			) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('cantAccessRole'))]

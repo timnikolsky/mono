@@ -1,13 +1,13 @@
 import { Command } from '@base/Command'
-import { Embed } from '@base/Embed'
-import MonoGuild from '@base/discord.js/Guild'
-import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
-import { DynamicImageFormat, User } from 'discord.js'
-import emojis from '../../assets/emojis'
-import MonoUser from '@base/discord.js/User'
+import MonoGuild from '@base/discord.js/Guild'
 import MonoGuildMember from '@base/discord.js/GuildMember'
+import MonoUser from '@base/discord.js/User'
+import { MonoEmbed } from '@base/Embed'
+import { ImageExtension } from '@discordjs/rest'
+import { MonoCommand } from '@typings/index'
+import emojis from '../../assets/emojis'
+import { CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -25,7 +25,7 @@ export default class extends Command implements MonoCommand {
 		if(!member || !interaction.guild) {
 			await interaction.reply({
 				embeds: [
-					new Embed()
+					new MonoEmbed()
 						.setDescription('oops')
 				]
 			})
@@ -34,20 +34,20 @@ export default class extends Command implements MonoCommand {
 		if(member.partial) await member.fetch()
 
 		const avatarExtensions = ['webp', 'png', 'jpg', 'jpeg']
-		if(member.user.displayAvatarURL({ dynamic: true }).endsWith('.gif')) avatarExtensions.push('gif')
+		if(member.user.displayAvatarURL({ forceStatic: false }).endsWith('.gif')) avatarExtensions.push('gif')
 
 		const badges = []
 		if(member.user.id === interaction.guild?.ownerId) badges.push('owner')
-		if(member.permissions.has('BAN_MEMBERS')) badges.push('moderator')
+		if(member.permissions.has('BanMembers')) badges.push('moderator')
 		if(member.premiumSince) badges.push('booster')
 		if(member.user.isStaff) badges.push('monoStaff')
 
 		await interaction.reply({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					// @ts-ignore
 					.setTitle(`${member.user.tag} ${badges.map(b => emojis.badge[b]).join(' ')}`)
-					.setThumbnail(member.user.displayAvatarURL({ size: 1024, format: 'png', dynamic: true }))
+					.setThumbnail(member.user.displayAvatarURL({ size: 1024, extension: 'png', forceStatic: false }))
 					.addField(
 						t('common:id'),
 						`\`${member.user.id}\``,
@@ -65,13 +65,13 @@ export default class extends Command implements MonoCommand {
 					)
 					.addField(
 						t('avatar'),
-						avatarExtensions.map((ext) => `[${ext}](${member.user.displayAvatarURL({ format: ext as DynamicImageFormat })})`).join(', '),
+						avatarExtensions.map((ext) => `[${ext}](${member.user.displayAvatarURL({ extension: ext as ImageExtension })})`).join(', '),
 						true
 					)
 					.addField(
 						t('permissions'),
-						member.permissions.toArray().includes('ADMINISTRATOR') ?
-							`\`${t(`common:permissions.ADMINISTRATOR`)}\`` :
+						member.permissions.toArray().includes('Administrator') ?
+							`\`${t(`common:permissions.Administrator`)}\`` :
 							member.permissions.toArray()
 								.filter(n => !interaction.guild?.roles.everyone.permissions.toArray().includes(n))
 								.map(p => `\`${t(`common:permissions.${p}`)}\``)

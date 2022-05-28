@@ -1,7 +1,7 @@
+import MonoGuild from '@base/discord.js/Guild'
 import Listener from '@base/Listener'
 import Mono from '@base/Mono'
-import { Collection, MessageReaction, User } from 'discord.js'
-import MonoGuild from '@base/discord.js/Guild'
+import { MessageReaction, User } from 'discord.js'
 import { ReactionRolesMessageMode } from '../../enums'
 
 export default new Listener(
@@ -39,7 +39,7 @@ export default new Listener(
 
 						})
 						// TODO: clean code
-						await (messageReaction.message.reactions.cache.filter(r => ![r.emoji.name, r.emoji.id].some(e => e === reactionRole.emoji), { return: 'collection' }) as unknown as Collection).forEach((r: MessageReaction) => r.users.remove(user))
+						await (messageReaction.message.reactions.cache.filter(r => ![r.emoji.name, r.emoji.id].some(e => e === reactionRole.emoji))).forEach((r: MessageReaction) => r.users.remove(user))
 						await member.roles.add(reactionRole.roleId)
 						break
 					case ReactionRolesMessageMode.ADD_ONLY:

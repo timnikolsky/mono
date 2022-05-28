@@ -11,8 +11,8 @@ export default new Listener(
 		// Autorole
 		const guildAutoroleModule = (member.guild as MonoGuild).modules.roles
 		if(guildAutoroleModule.enabled && guildAutoroleModule.roleId && !member.pending) {
-			const autorole = await member.guild.roles.fetch(guildAutoroleModule.roleId)
-			await member.roles.add(guildAutoroleModule.roleId).catch(() => {})
+			// const autorole = await member.guild.roles.fetch(guildAutoroleModule.roleId)
+			await member.roles.add(guildAutoroleModule.roleId).catch(console.log)
 		}
 	}
 )

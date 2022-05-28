@@ -1,5 +1,5 @@
 import { Command } from '@base/Command'
-import { Embed, ErrorEmbed } from '@base/Embed'
+import { MonoEmbed, ErrorEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
@@ -30,9 +30,9 @@ export default class extends Command implements MonoCommand {
 
 		await interaction.reply({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					.setTitle(guild.name)
-					.setThumbnail(guild.iconURL({ dynamic: true }) || discordAvatars.fromId(guild.id))
+					.setThumbnail(guild.iconURL({ forceStatic: false, extension: 'png' }) || discordAvatars.fromId(guild.id))
 					.addField(t('owner'), formatUser(owner), true)
 					.addField(t('created'), formatTimestamp(guild.createdTimestamp), true)
 					.addField(t('members'), `${memberCount} ${emojis.user}`)

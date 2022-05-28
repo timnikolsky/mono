@@ -1,15 +1,22 @@
-import { MessageEmbed, MessageEmbedOptions } from 'discord.js'
+import { EmbedBuilder, EmbedData } from 'discord.js'
 import emojis from '../assets/emojis'
 
-export class Embed extends MessageEmbed {
-	constructor(data?: MessageEmbed | MessageEmbedOptions) {
-		if(!data) data = { color: '#2F3136' }
-		if(!data.color) data.color = '#2F3136'
+export class MonoEmbed extends EmbedBuilder {
+	constructor(data?: EmbedData) {
+		if(!data) data = { color: 0x2F3136 }
+		if(!data.color) data.color = 0x2F3136
 		super(data)
+	}
+
+	addField(name: string, value: string, inline?: boolean): this {
+		this.addFields([{
+			name, value, inline
+		}])
+		return this
 	}
 }
 
-export class EmojiEmbed extends Embed {
+export class EmojiEmbed extends MonoEmbed {
 	constructor(emoji: string, content: string) {
 		super({
 			description: `${emoji} ${content}`

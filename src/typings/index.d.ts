@@ -59,7 +59,8 @@ export interface CommandContextOptions {
 }
 
 export interface ModuleData {
-	enabledDefault: boolean
+	enabledDefault: boolean,
+	disabledGlobally?: boolean
 }
 
 export interface GuildModules {

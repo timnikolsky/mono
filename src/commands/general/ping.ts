@@ -1,9 +1,8 @@
 import { Command } from '@base/Command'
-import { Embed } from '@base/Embed'
-import MonoGuild from '@base/discord.js/Guild'
-import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import ModerationModule from '@modules/Moderation'
+import MonoGuild from '@base/discord.js/Guild'
+import { MonoEmbed } from '@base/Embed'
+import { MonoCommand } from '@typings/index'
 import emojis from '../../assets/emojis'
 
 export default class extends Command implements MonoCommand {
@@ -17,7 +16,7 @@ export default class extends Command implements MonoCommand {
 	async execute({ interaction, t }: CommandContext) {
 		await interaction.reply({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					.setDescription(`${emojis.pingPong} ${t('pong', { ping: this.client.ws.ping })}`)
 			]
 		})

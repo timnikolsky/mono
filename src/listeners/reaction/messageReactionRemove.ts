@@ -49,7 +49,7 @@ export default new Listener(
 		// const guild = message.guild as MonoGuild
 		// if(!guild) return
 		//
-		// if(!message.member) await guild.members.fetch(message.author?.id || '')
+		// if(!message.member) await guild.members.members.fetch(message.author?.id || '')
 		//
 		// const { starboard: starboardConfig } = await guild.modules
 		// if(!starboardConfig.enabled) return

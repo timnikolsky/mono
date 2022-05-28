@@ -12,8 +12,9 @@ model Guild {
   language             String                @default("en")
   modules              Json                  @default("{}")
   reactionRoleMessages ReactionRoleMessage[]
-//  ModerationNotes      ModerationNote[]
-  Warnings                Warning[]
+  commands             Json                  @default("{}")
+  //  ModerationNotes      ModerationNote[]
+  Warnings             Warning[]
 }
 
 model Member {
@@ -45,7 +46,7 @@ model ReactionRole {
 }
 
 model ActivePrivateRoom {
-  channelId String @id
+  channelId String  @id
   hostId    String
   locked    Boolean @default(false)
   hidden    Boolean @default(false)
@@ -90,9 +91,17 @@ model Warning {
   deleted    Boolean  @default(false)
 }
 
-//model CommandResult {
-//    id          Int             @id @autoincrement
-//    commandId   String
-//    executor    String
-//
-//}
+model CommandResult {
+  id        Int    @id @default(autoincrement())
+  commandId String
+  executor  String
+  result    Int
+}
+
+model MessageStatistic {
+  messageId String   @id
+  guildId   String
+  channelId String
+  authorId  String
+  createdAt DateTime
+}

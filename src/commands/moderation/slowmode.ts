@@ -1,10 +1,10 @@
 import { Command } from '@base/Command'
-import { Embed } from '@base/Embed'
-import MonoGuild from '@base/discord.js/Guild'
-import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
+import MonoGuild from '@base/discord.js/Guild'
+import { MonoEmbed } from '@base/Embed'
+import { MonoCommand } from '@typings/index'
 import { TextChannel } from 'discord.js'
+import { CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -17,7 +17,7 @@ export default class extends Command implements MonoCommand {
 				minValue: 0,
 				maxValue: 21600
 			}],
-			botPermissionsRequired: ['MANAGE_CHANNELS'],
+			botPermissionsRequired: ['ManageMessages'],
 			module: 'moderation'
 		})
 	}
@@ -26,7 +26,7 @@ export default class extends Command implements MonoCommand {
 		await (interaction.channel as TextChannel).setRateLimitPerUser(duration)
 		await interaction.reply({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					.setDescription(
 						duration
 							? t(`changed`, { duration })

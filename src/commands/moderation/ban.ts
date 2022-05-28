@@ -23,7 +23,7 @@ export default class extends Command implements MonoCommand {
 				minValue: 0,
 				maxValue: 7
 			}],
-			botPermissionsRequired: ['BAN_MEMBERS'],
+			botPermissionsRequired: ['BanMembers'],
 			module: 'moderation'
 		})
 	}
@@ -73,7 +73,7 @@ export default class extends Command implements MonoCommand {
 
 		await member.ban({
 			reason: `${interaction.user.tag} | ${reason ?? t('common:noReasonProvided')}`,
-			days: cleanDays
+			deleteMessageDays: cleanDays
 		})
 
 		await interaction.reply({

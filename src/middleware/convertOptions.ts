@@ -1,6 +1,6 @@
 import { CommandOption, MiddlewareContext } from '@typings/index'
 import { CommandOptionTypes, MiddlewareResult } from '../enums'
-import { CommandInteractionOption, Emoji, GuildTextBasedChannel } from 'discord.js'
+import { ApplicationCommandOptionType, CommandInteractionOption, Emoji, GuildTextBasedChannel } from 'discord.js'
 import { ErrorEmbed } from '@base/Embed'
 import { getTranslatorFunction } from '@utils/localization'
 import MonoGuild from '@base/discord.js/Guild'
@@ -13,18 +13,17 @@ export default async function (context: MiddlewareContext) {
 
 	try {
 		for (const discordOption of options.data) {
-
-			if (!['SUB_COMMAND', 'SUB_COMMAND_GROUP'].includes(discordOption.type))
+			if (![ApplicationCommandOptionType.Subcommand, ApplicationCommandOptionType.SubcommandGroup].includes(discordOption.type))
 				commandOptions[snakeCaseToCamelCase(discordOption.name)] = await convertOption(context, discordOption)
 
 			if (discordOption.options) {
 				for (const discordSubOption of discordOption.options) {
-					if (!['SUB_COMMAND', 'SUB_COMMAND_GROUP'].includes(discordSubOption.type))
+					if (![ApplicationCommandOptionType.Subcommand, ApplicationCommandOptionType.SubcommandGroup].includes(discordSubOption.type))
 						commandOptions[snakeCaseToCamelCase(discordSubOption.name)] = await convertOption(context, discordSubOption)
 
 					if (discordSubOption.options) {
 						for (const discordSubSubOption of discordSubOption.options) {
-							if (!['SUB_COMMAND', 'SUB_COMMAND_GROUP'].includes(discordSubSubOption.type))
+							if (![ApplicationCommandOptionType.Subcommand, ApplicationCommandOptionType.SubcommandGroup].includes(discordSubSubOption.type))
 								commandOptions[snakeCaseToCamelCase(discordSubSubOption.name)] = await convertOption(context, discordSubSubOption)
 						}
 					}
@@ -76,6 +75,7 @@ async function convertOption(context: MiddlewareContext, discordOption: CommandI
 			}
 			return emoji
 		case CommandOptionTypes.MESSAGE:
+			console.log(discordOption.options)
 			if (!/(https:\/\/)?(canary\.)?discord(app)?.com\/channels\/\d{18,19}\/\d{18,19}\/\d{18,19}/.test(discordOption.value as string)) {
 				await context.interaction.reply({ embeds: [new ErrorEmbed('Use message link')] })
 				throw new Error()

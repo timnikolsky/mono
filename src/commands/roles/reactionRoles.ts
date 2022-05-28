@@ -1,5 +1,5 @@
 import { Command } from '@base/Command'
-import { Embed, ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
+import { MonoEmbed, ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
@@ -10,11 +10,13 @@ import {
 	GuildMember,
 	GuildTextBasedChannel,
 	Message,
-	MessageActionRow,
-	MessageButton,
-	MessageSelectMenu, Permissions,
+	ActionRowBuilder,
+	ButtonBuilder,
+	SelectMenuBuilder,
 	Role,
-	SelectMenuInteraction
+	SelectMenuInteraction,
+	ButtonStyle,
+	MessageActionRowComponentBuilder
 } from 'discord.js'
 import emoji from '@commands/information/emoji'
 import Paginator from '@base/Paginator'
@@ -81,8 +83,8 @@ export default class extends Command implements MonoCommand {
 
 			if (
 				!options.role?.managed
-				&& !this.guild.me!.permissions.has(Permissions.FLAGS.MANAGE_ROLES)
-				&& this.guild.me!.roles.highest.comparePositionTo(options.role!) > 0
+				&& !this.guild.members.me!.permissions.has('ManageRoles')
+				&& this.guild.members.me!.roles.highest.comparePositionTo(options.role!) > 0
 			) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('commands:autorole.cantAccessRole'))]
@@ -90,10 +92,10 @@ export default class extends Command implements MonoCommand {
 				return
 			}
 
-			const messageChannelPermissions = options.message!.guild!.me!
+			const messageChannelPermissions = options.message!.guild!.members.me!
 				.permissionsIn(options.message!.channel as GuildChannelResolvable)
 
-			if (!messageChannelPermissions.has('ADD_REACTIONS')) {
+			if (!messageChannelPermissions.has('AddReactions')) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('missingPermissions'))]
 				})
@@ -123,13 +125,13 @@ export default class extends Command implements MonoCommand {
 			if (!reactionRoleMessage) {
 				await interaction.reply({
 					embeds: [
-						new Embed()
+						new MonoEmbed()
 							.setDescription(t('creationDescription'))
 					],
 					components: [
-						new MessageActionRow()
+						new ActionRowBuilder<MessageActionRowComponentBuilder>()
 							.setComponents([
-								new MessageSelectMenu()
+								new SelectMenuBuilder()
 									.setCustomId('mode')
 									.setPlaceholder(t('chooseMode'))
 									.setOptions([{
@@ -150,12 +152,12 @@ export default class extends Command implements MonoCommand {
 										value: '3'
 									}])
 							]),
-						new MessageActionRow()
+						new ActionRowBuilder<MessageActionRowComponentBuilder>()
 							.setComponents([
-								new MessageButton()
+								new ButtonBuilder()
 									.setCustomId('cancel')
 									.setLabel(t('common:cancel'))
-									.setStyle('SECONDARY')
+									.setStyle(ButtonStyle.Secondary)
 							])
 					]
 				})
@@ -253,7 +255,7 @@ export default class extends Command implements MonoCommand {
 					const message = await channel.messages.fetch(data.id)
 					return {
 						embeds: [
-							new Embed()
+							new MonoEmbed()
 								.setTitle(`#${channel.name}`)
 								.addField(
 									t('message'),
@@ -270,7 +272,7 @@ export default class extends Command implements MonoCommand {
 								)
 								.addField(
 									t('roles'),
-									data.reactionRoles.map(rr => `<:e:${rr.emoji}> › <@&${rr.roleId}>`).join('\n'),
+									data.reactionRoles.map(rr => `${rr.emoji.length >= 18 ? `<:e:${rr.emoji}>` : rr.emoji} › <@&${rr.roleId}>`).join('\n'),
 									true
 								)
 						]

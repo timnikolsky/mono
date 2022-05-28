@@ -1,15 +1,13 @@
 import { Command } from '@base/Command'
-import { ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
-import MonoGuild from '@base/discord.js/Guild'
-import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
-import { PermissionOverwriteOptions, Permissions, User, VoiceChannel } from 'discord.js'
-import { ChannelTypes } from 'discord.js/typings/enums'
+import MonoGuild from '@base/discord.js/Guild'
 import MonoGuildMember from '@base/discord.js/GuildMember'
-import user from '@commands/information/user'
+import { ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
 import { ActivePrivateRoom } from '@prisma/client'
-import { OverwriteResolvable } from 'discord.js'
+import { MonoCommand } from '@typings/index'
+import { ChannelType, OverwriteType } from 'discord-api-types/v10'
+import { OverwriteResolvable, User, VoiceChannel } from 'discord.js'
+import { CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -59,7 +57,8 @@ export default class extends Command implements MonoCommand {
 				options: [{
 					id: 'channel',
 					type: CommandOptionTypes.CHANNEL,
-					channelTypes: [ChannelTypes.GUILD_VOICE],
+					// TODO
+					// channelTypes: [],
 					required: false
 				}]
 			}, {
@@ -114,7 +113,7 @@ export default class extends Command implements MonoCommand {
 				}]
 			}],
 			module: 'privateRooms',
-			botPermissionsRequired: ['MOVE_MEMBERS', 'MANAGE_CHANNELS', 'MANAGE_ROLES']
+			botPermissionsRequired: ['MoveMembers', 'ManageChannels', 'ManageRoles']
 		})
 	}
 
@@ -124,7 +123,7 @@ export default class extends Command implements MonoCommand {
 		const member = await this.guild.members.fetch(interaction.user)
 
 		if(subCommand === 'setup') {
-			if(!member.permissions.has('MANAGE_GUILD')) {
+			if(!member.permissions.has('ManageGuild')) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('noPermissions'))]
 				})
@@ -133,7 +132,7 @@ export default class extends Command implements MonoCommand {
 
 			// If channel not specified, create it automatically
 			if(!options.channel) {
-				if(!interaction.guild!.me!.permissions.has('MANAGE_CHANNELS')) {
+				if(!interaction.guild!.members.me!.permissions.has('ManageMessages')) {
 					await interaction.reply({
 						embeds: [new ErrorEmbed(t('cantCreateChannel'))]
 					})
@@ -142,11 +141,11 @@ export default class extends Command implements MonoCommand {
 
 				const joinChannelCategoryCreated = await interaction.guild!.channels.create(
 					t('newJoinChannelCategoryName'),
-					{ type: 'GUILD_CATEGORY' }
+					{ type: ChannelType.GuildCategory }
 				)
 				const joinChannelCreated = await interaction.guild!.channels.create(
 					t('newJoinChannelName'),
-					{ type: 'GUILD_VOICE', parent: joinChannelCategoryCreated }
+					{ type: ChannelType.GuildVoice, parent: joinChannelCategoryCreated }
 				);
 
 				await privateRoomsModule.setJoinChannelId(joinChannelCreated.id)
@@ -168,7 +167,7 @@ export default class extends Command implements MonoCommand {
 
 		// Default settings
 		if(subCommandGroup === 'default') {
-			if(!member.permissions.has('MANAGE_GUILD')) {
+			if(!member.permissions.has('ManageGuild')) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('noPermissions'))]
 				})
@@ -346,9 +345,9 @@ export default class extends Command implements MonoCommand {
 			}
 
 			await currentChannel.permissionOverwrites.edit(options.user!, {
-				VIEW_CHANNEL: true,
-				MANAGE_CHANNELS: true,
-				CONNECT: true
+				ViewChannel: true,
+				ManageChannels: true,
+				Connect: true
 			})
 
 			await currentChannel.permissionOverwrites.delete(interaction.user)
@@ -386,15 +385,15 @@ interface CommandOptions {
 async function updatePrivateRoom(channel: VoiceChannel, privateRoomData: ActivePrivateRoom, member: MonoGuildMember) {
 	const permissionOverwrites: OverwriteResolvable[] = [{
 		id: channel.client.user!.id,
-		type: 'member',
-		allow: ['VIEW_CHANNEL', 'MANAGE_CHANNELS', 'CONNECT']
+		type: OverwriteType.Member,
+		allow: ['ViewChannel', 'ManageMessages', 'Connect']
 	}, {
 		id: member.user.id,
-		type: 'member',
-		allow: ['VIEW_CHANNEL', 'MANAGE_CHANNELS', 'CONNECT']
+		type: OverwriteType.Member,
+		allow: ['ViewChannel', 'ManageMessages', 'Connect']
 	}, {
 		id: channel.guild.roles.everyone.id,
-		type: 'role',
+		type: OverwriteType.Role,
 		allow: [],
 		deny: []
 	}]

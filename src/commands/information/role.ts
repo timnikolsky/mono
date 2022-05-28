@@ -1,5 +1,5 @@
 import { Command } from '@base/Command'
-import { Embed } from '@base/Embed'
+import { MonoEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
@@ -26,7 +26,7 @@ export default class extends Command implements MonoCommand {
 		if(!role || !interaction.guild) {
 			await interaction.reply({
 				embeds: [
-					new Embed()
+					new MonoEmbed()
 						.setDescription('oops')
 				]
 			})
@@ -95,7 +95,7 @@ export default class extends Command implements MonoCommand {
 		if(role.id === role.guild.roles.everyone.id) {
 			await interaction.reply({
 				embeds: [
-					new Embed()
+					new MonoEmbed()
 						.setTitle(`@everyone`)
 						.setThumbnail(imageURL)
 						.addField(
@@ -110,8 +110,8 @@ export default class extends Command implements MonoCommand {
 						)
 						.addField(
 							t('permissions'),
-							role.permissions.toArray().includes('ADMINISTRATOR') ?
-								`\`${t(`common:permissions.ADMINISTRATOR`)}\`` :
+							role.permissions.toArray().includes('Administrator') ?
+								`\`${t(`common:permissions.Administrator`)}\`` :
 								role.permissions.toArray()
 									.map(p => `\`${t(`common:permissions.${p}`)}\``)
 									.join(', ') || t('common:none'),
@@ -123,7 +123,7 @@ export default class extends Command implements MonoCommand {
 		}
 		await interaction.reply({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					.setTitle(`@${role.name}`)
 					.setThumbnail(imageURL)
 					.addField(
@@ -158,8 +158,8 @@ export default class extends Command implements MonoCommand {
 					)
 					.addField(
 						t('permissions'),
-						role.permissions.toArray().includes('ADMINISTRATOR') ?
-							`\`${t(`common:permissions.ADMINISTRATOR`)}\`` :
+						role.permissions.toArray().includes('Administrator') ?
+							`\`${t(`common:permissions.Administrator`)}\`` :
 							role.permissions.toArray()
 								.filter(n => !interaction.guild?.roles.everyone.permissions.toArray().includes(n))
 								.map(p => `\`${t(`common:permissions.${p}`)}\``)

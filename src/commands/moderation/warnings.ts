@@ -6,7 +6,7 @@ import { CommandOptionTypes } from '../../enums'
 import { GuildMember, User } from 'discord.js'
 import MonoGuildMember from '@base/discord.js/GuildMember'
 import Paginator from '@base/Paginator'
-import { Embed, InfoEmbed, SuccessEmbed } from '@base/Embed'
+import { MonoEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
 import { formatTimestamp, formatUser } from '@utils/formatters'
 import user from '@commands/information/user'
 
@@ -40,7 +40,7 @@ export default class extends Command implements MonoCommand {
 			payloadGenerator: async (warning) => {
 				return {
 					embeds: [
-						new Embed()
+						new MonoEmbed()
 							.setAuthor({
 								name: member.displayName,
 								iconURL: member.displayAvatarURL()

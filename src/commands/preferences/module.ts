@@ -1,5 +1,5 @@
 import { Command } from '@base/Command'
-import { Embed, SuccessEmbed } from '@base/Embed'
+import { MonoEmbed, SuccessEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
@@ -17,7 +17,7 @@ export default class extends Command implements MonoCommand {
 				options: [{
 					id: 'module',
 					type: CommandOptionTypes.MODULE,
-					// required: true
+					required: true
 				}]
 			}))
 		})
@@ -48,7 +48,7 @@ export default class extends Command implements MonoCommand {
 		if(subCommand === 'info') {
 			await interaction.reply({
 				embeds: [
-					new Embed()
+					new MonoEmbed()
 						.setTitle(t(`modules:${moduleName}.name`))
 						.setDescription(t(`modules:${moduleName}.description`))
 						// @ts-ignore

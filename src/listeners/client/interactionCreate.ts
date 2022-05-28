@@ -1,6 +1,6 @@
 import Listener from '@base/Listener'
 import Mono from '@base/Mono'
-import { CommandInteraction } from 'discord.js'
+import { CommandInteraction, InteractionType } from 'discord.js'
 import { Command } from '@base/Command'
 import MonoGuild from '@base/discord.js/Guild'
 import CommandContext from '@base/CommandContext'
@@ -13,8 +13,7 @@ import { getTranslatorFunction } from '@utils/localization'
 export default new Listener(
 	'interactionCreate',
 	async (client: Mono, interaction: CommandInteraction) => {
-		if (interaction.type !== 'APPLICATION_COMMAND') return
-
+		if (!interaction.isChatInputCommand()) return
 		if (!interaction.inGuild()) return
 
 		const command: Command = new (client.commands.filter(command => new command(interaction.guild as MonoGuild).id === interaction.commandName)[0])(interaction.guild as MonoGuild)

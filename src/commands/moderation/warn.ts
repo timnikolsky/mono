@@ -6,7 +6,7 @@ import { CommandOptionTypes } from '../../enums'
 import { GuildMember, GuildMemberRoleManager, User } from 'discord.js'
 import MonoGuildMember from '@base/discord.js/GuildMember'
 import Paginator from '@base/Paginator'
-import { Embed, ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
+import { MonoEmbed, ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
 import { formatTimestamp, formatUser } from '@utils/formatters'
 import user from '@commands/information/user'
 import Mono from '@base/Mono'
@@ -41,17 +41,17 @@ export default class extends Command implements MonoCommand {
 	}
 
 	async execute({ interaction, t }: CommandContext, { subCommand, user, text, warnId }: CommandOptions) {
-		let member: MonoGuildMember
-		try {
-			member = this.guild.members.cache.get(user.id) as MonoGuildMember
-		} catch(e) {
-			await interaction.reply({
-				embeds: [new ErrorEmbed(t('memberNotFound'))]
-			})
-			return
-		}
-
 		if(subCommand === 'add') {
+			let member: MonoGuildMember
+			try {
+				member = this.guild.members.cache.get(user.id) as MonoGuildMember
+			} catch(e) {
+				await interaction.reply({
+					embeds: [new ErrorEmbed(t('memberNotFound'))]
+				})
+				return
+			}
+
 			if(user.equals(interaction.user)) {
 				await interaction.reply({
 					embeds: [new InfoEmbed(t('cantBanSelf'))]

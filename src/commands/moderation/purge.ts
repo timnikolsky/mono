@@ -17,7 +17,7 @@ export default class extends Command implements MonoCommand {
 				maxValue: 100,
 				required: true
 			}],
-			botPermissionsRequired: ['MANAGE_MESSAGES'],
+			botPermissionsRequired: ['ManageMessages'],
 			module: 'moderation'
 		})
 	}

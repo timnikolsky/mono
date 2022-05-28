@@ -1,11 +1,10 @@
 import {
-	CommandInteraction,
+	ButtonStyle,
+	ActionRowBuilder,
+	ButtonBuilder, CommandInteraction,
 	GuildMember,
 	InteractionCollector,
-	Message,
-	MessageActionRow,
-	MessageButton,
-	WebhookEditMessageOptions
+	Message, WebhookEditMessageOptions, MessageEditOptions, MessageOptions, MessagePayload, MessageActionRowComponentBuilder
 } from 'discord.js'
 import emojis from '../assets/emojis'
 
@@ -13,7 +12,7 @@ import emojis from '../assets/emojis'
 export default class Paginator<T> {
 	member: GuildMember
 	data: T[]
-	payloadGenerator: (data: T, page: number) => Promise<WebhookEditMessageOptions>
+	payloadGenerator: (data: T, page: number) => Promise<MessageEditOptions>
 	page: number
 	message?: Message
 	interactionCollector?: InteractionCollector<any>
@@ -22,7 +21,7 @@ export default class Paginator<T> {
 	constructor({ member, data, payloadGenerator, config }: {
 		member: GuildMember,
 		data: T[],
-		payloadGenerator: (data: T, page: number) => Promise<WebhookEditMessageOptions>,
+		payloadGenerator: (data: T, page: number) => Promise<MessageEditOptions>,
 		config?: {
 			page?: number
 		}
@@ -40,12 +39,14 @@ export default class Paginator<T> {
 	async init(interaction: CommandInteraction) {
 		const payload = await this.payloadGenerator(this.data[this.page], this.page)
 
+		// TODO: Fix
 		payload.components
 			? payload.components.unshift(this.getNavigationButtons(this.page))
 			: payload.components = [this.getNavigationButtons(this.page)]
 
 		this.startTimeout(60 * 1000)
 
+		// @ts-expect-error
 		await interaction.reply(payload)
 		this.message = await interaction.fetchReply() as Message
 
@@ -88,19 +89,19 @@ export default class Paginator<T> {
 	}
 
 	getNavigationButtons(page: number) {
-		return new MessageActionRow()
+		return new ActionRowBuilder<MessageActionRowComponentBuilder>()
 			.addComponents([
-				new MessageButton()
-					.setStyle('SECONDARY')
+				new ButtonBuilder()
+					.setStyle(ButtonStyle.Secondary)
 					.setEmoji(emojis.chevron.left)
 					.setCustomId('paginationLeft'),
-				new MessageButton()
-					.setStyle('SECONDARY')
+				new ButtonBuilder()
+					.setStyle(ButtonStyle.Secondary)
 					.setLabel(`${page + 1} / ${this.pagesLength}`)
 					.setCustomId('paginationPageLabel')
 					.setDisabled(true),
-				new MessageButton()
-					.setStyle('SECONDARY')
+				new ButtonBuilder()
+					.setStyle(ButtonStyle.Secondary)
 					.setEmoji(emojis.chevron.right)
 					.setCustomId('paginationRight')
 			])

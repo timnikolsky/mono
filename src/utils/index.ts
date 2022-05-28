@@ -1,7 +1,6 @@
 import { CommandOptionTypes } from '../enums'
-import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums'
 import { CommandOption } from '@typings/index'
-import { ApplicationCommandOptionData } from 'discord.js'
+import { ApplicationCommandOptionData, ApplicationCommandOptionType } from 'discord.js'
 import MonoGuild from '@base/discord.js/Guild'
 import { getTranslatorFunction } from '@utils/localization'
 
@@ -9,55 +8,57 @@ export function getRandomInt(min: number, max: number): number {
 	return Math.floor(Math.random() * (max - min)) + min
 }
 
-export function convertOptionType(monoOptionType: any): ApplicationCommandOptionTypes {
+export function convertOptionType(monoOptionType: any): ApplicationCommandOptionType {
+	
 	// Discord types
+
 	if(monoOptionType === CommandOptionTypes.SUB_COMMAND)
-		return ApplicationCommandOptionTypes.SUB_COMMAND
+		return ApplicationCommandOptionType.Subcommand
 
 	if(monoOptionType === CommandOptionTypes.SUB_COMMAND_GROUP)
-		return ApplicationCommandOptionTypes.SUB_COMMAND_GROUP
+		return ApplicationCommandOptionType.SubcommandGroup
 
 	if(monoOptionType === CommandOptionTypes.STRING)
-		return ApplicationCommandOptionTypes.STRING
+		return ApplicationCommandOptionType.String
 
 	if(monoOptionType === CommandOptionTypes.INTEGER)
-		return ApplicationCommandOptionTypes.INTEGER
+		return ApplicationCommandOptionType.Integer
 
 	if(monoOptionType === CommandOptionTypes.NUMBER)
-		return ApplicationCommandOptionTypes.NUMBER
+		return ApplicationCommandOptionType.Number
 
 	if(monoOptionType === CommandOptionTypes.BOOLEAN)
-		return ApplicationCommandOptionTypes.BOOLEAN
+		return ApplicationCommandOptionType.Boolean
 
 	if(monoOptionType === CommandOptionTypes.USER)
-		return ApplicationCommandOptionTypes.USER
+		return ApplicationCommandOptionType.User
 
 	if(monoOptionType === CommandOptionTypes.CHANNEL)
-		return ApplicationCommandOptionTypes.CHANNEL
+		return ApplicationCommandOptionType.Channel
 
 	if(monoOptionType === CommandOptionTypes.ROLE)
-		return ApplicationCommandOptionTypes.ROLE
+		return ApplicationCommandOptionType.Role
 
 	// Custom types
 
 	if(monoOptionType === CommandOptionTypes.MESSAGE)
-		return ApplicationCommandOptionTypes.STRING
+		return ApplicationCommandOptionType.String
 
 	if(monoOptionType === CommandOptionTypes.EMOJI) {
-		return ApplicationCommandOptionTypes.STRING
+		return ApplicationCommandOptionType.String
 	}
 
 	if(monoOptionType === CommandOptionTypes.DURATION)
-		return ApplicationCommandOptionTypes.NUMBER
+		return ApplicationCommandOptionType.Number
 
 	if(monoOptionType === CommandOptionTypes.COMMAND)
-		return ApplicationCommandOptionTypes.STRING
+		return ApplicationCommandOptionType.String
 
 	if(monoOptionType === CommandOptionTypes.MODULE)
-		return ApplicationCommandOptionTypes.STRING
+		return ApplicationCommandOptionType.String
 
 	if(monoOptionType === CommandOptionTypes.MESSAGE_CONFIG)
-		return ApplicationCommandOptionTypes.STRING
+		return ApplicationCommandOptionType.String
 
 	else throw new Error()
 }

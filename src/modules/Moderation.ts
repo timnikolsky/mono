@@ -9,7 +9,8 @@ export default class ModerationModule extends Module {
 
 	constructor(guild: MonoGuild, config: any = {}) {
 		super(guild, {
-			enabledDefault: true
+			enabledDefault: false,
+			disabledGlobally: true
 		})
 
 		this.enabled = config.enabled ?? this.enabledDefault

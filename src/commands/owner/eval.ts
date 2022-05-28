@@ -1,5 +1,5 @@
 import { Command } from '@base/Command'
-import { Embed } from '@base/Embed'
+import { MonoEmbed } from '@base/Embed'
 import { MonoCommand } from '@typings/index'
 import MonoGuild from '@base/discord.js/Guild'
 import CommandContext from '@base/CommandContext'
@@ -25,7 +25,7 @@ export default class extends Command implements MonoCommand {
 		const result = eval(<string> interaction.options.getString('code'))
 		await interaction.reply({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					.addField('Code Result', `\`\`\`js\n${result}\`\`\``)
 			],
 			ephemeral: interaction.options.getBoolean('ephemeral') ?? true

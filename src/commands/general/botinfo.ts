@@ -1,5 +1,5 @@
 import { Command } from '@base/Command'
-import { Embed } from '@base/Embed'
+import { MonoEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
@@ -16,7 +16,7 @@ export default class extends Command implements MonoCommand {
 	async execute({ interaction, t }: CommandContext) {
 		await interaction.reply({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					.setThumbnail('https://media.discordapp.net/attachments/858415255422894090/962446400078090291/unknown.png?width=640&height=640')
 					.setTitle(t('title'))
 					.setDescription(`${t('description')}\n[${t('supportServer')}](${this.client.config.monoLoungeInviteLink}) · [Top.gg](https://mono-bot.vercel.app)`) // · [${t('website')}](https://mono-bot.vercel.app)

@@ -1,4 +1,4 @@
-import { Client, ClientOptions, MessageAttachment, TextChannel } from 'discord.js'
+import { Client, ClientOptions, Attachment, TextChannel } from 'discord.js'
 import { PrismaClient } from '@prisma/client'
 import * as config from '../config'
 import glob from 'glob'
@@ -44,7 +44,7 @@ export default class Mono extends Client {
 
 	async uploadImage(buffer: Buffer, fileName?: string) {
 		const imageMessage = await (await this.channels.fetch(process.env.IMAGES_CHANNEL!) as TextChannel).send({
-			files: [new MessageAttachment(buffer, fileName)]
+			files: [new Attachment(buffer, fileName)]
 		})
 		return imageMessage.attachments.first()!.url
 	}

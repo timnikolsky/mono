@@ -1,4 +1,4 @@
-import { ChatInputApplicationCommandData, Guild } from 'discord.js'
+import { ApplicationCommandType, ChatInputApplicationCommandData, Guild } from 'discord.js'
 import { RawGuildData } from 'discord.js/typings/rawDataTypes'
 import Mono from '@base/Mono'
 import { TFunction } from 'i18next'
@@ -60,7 +60,7 @@ class MonoGuild extends Guild {
 				return {
 					name: command.id,
 					description: t(`commands:${command.id}._data.description`),
-					type: 'CHAT_INPUT',
+					type: ApplicationCommandType.ChatInput,
 					options: generateOptions(this, command.options, {
 						rootCommandId: command.id
 					})
@@ -75,11 +75,12 @@ class MonoGuild extends Guild {
 
 	public async uploadCommands() {
 		try {
+			// console.log(JSON.stringify(this.generateCommands(), null, 2))
 			await this.commands.set(this.generateCommands())
 			Console.info(`Uploaded slash command to guild '${this.name}'`)
 			return true
 		} catch(e) {
-			Console.error(`'Couldn't upload slash commands to guild '${this.name}'`)
+			Console.error(`Couldn't upload slash commands to guild '${this.name}'`)
 			console.log(e)
 			return false
 		}

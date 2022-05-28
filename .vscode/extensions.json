@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "gruntfuggly.todo-tree",
+        "prisma.prisma",
+        "esbenp.prettier-vscode"
+    ]
+}

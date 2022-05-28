@@ -1,5 +1,5 @@
 import { Command } from '@base/Command'
-import { Embed, SuccessEmbed } from '@base/Embed'
+import { SuccessEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'

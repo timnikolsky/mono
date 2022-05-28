@@ -6,14 +6,14 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/main.js",
-    "dev": "tsnd src/main.ts",
+    "dev": "tsnd --respawn --clear -- src/main.ts",
     "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mono-team/bot.git"
   },
-  "author": "",
+  "author": "sadnesszephyr",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mono-team/bot/issues"
@@ -28,12 +28,12 @@
   "homepage": "https://github.com/mono-team/bot#readme",
   "prisma": "src/prisma/schema.prisma",
   "dependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
+    "@discordjs/builders": "https://gitpkg.now.sh/uni-inc/discord.js/packages/builders?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad",
+    "@discordjs/rest": "https://gitpkg.now.sh/uni-inc/discord.js/packages/rest?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad",
     "@discordjs/voice": "^0.7.5",
+    "@discrodjs/collections": "https://gitpkg.now.sh/uni-inc/discord.js/packages/collections?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad",
     "@laverdet/lokesh-colorthief": "^2.3.2",
     "@mapbox/node-pre-gyp": "^1.0.7",
-    "@nestjs/core": "^8.3.1",
-    "@nestjs/platform-express": "^8.3.1",
     "@prisma/client": "^3.1.1",
     "ansi-align": "^3.0.1",
     "axios": "^0.24.0",
@@ -45,8 +45,8 @@
     "cli-progress": "^3.9.1",
     "color-name-list": "^9.3.0",
     "deepmerge": "^4.2.2",
-    "discord-api-types": "^0.24.0",
-    "discord.js": "github:YstNeris/discord.js-heir",
+    "discord-api-types": "^0.33.0",
+    "discord.js": "https://gitpkg.now.sh/uni-inc/discord.js/packages/discord.js?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad",
     "dominant-color": "^0.0.1",
     "dotenv": "^10.0.0",
     "fast-average-color-node": "^2.1.0",
@@ -66,23 +66,22 @@
     "widest-line": "^4.0.1"
   },
   "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/cli-progress": "^3.9.2",
+    "@types/deepmerge": "^2.2.0",
     "@types/express": "^4.17.13",
+    "@types/glob": "^7.1.4",
+    "@types/i18next-node-fs-backend": "^2.1.1",
+    "@types/kind-of": "^6.0.0",
+    "@types/merge-deep": "^3.0.0",
     "@types/module-alias": "^2.0.1",
+    "@types/unzalgo": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
+    "crowdin": "^3.5.0",
     "eslint": "^8.5.0",
-    "jest": "^27.3.1",
-		"ts-node-dev": "^1.1.8",
-		"typescript": "^4.4.3",
-		"@types/chalk": "^2.2.0",
-		"@types/cli-progress": "^3.9.2",
-		"@types/deepmerge": "^2.2.0",
-		"@types/glob": "^7.1.4",
-		"@types/i18next-node-fs-backend": "^2.1.1",
-		"@types/kind-of": "^6.0.0",
-		"@types/merge-deep": "^3.0.0",
-		"@types/unzalgo": "^3.0.0",
-		"prisma": "^3.1.1",
-		"crowdin": "^3.5.0"
-	}
+    "prisma": "^3.1.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.3"
+  }
 }

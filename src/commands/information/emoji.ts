@@ -1,12 +1,11 @@
 import { Command } from '@base/Command'
-import { Embed } from '@base/Embed'
-import MonoGuild from '@base/discord.js/Guild'
-import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
-import { Emoji } from 'discord.js'
-import emojis from '../../assets/emojis'
+import MonoGuild from '@base/discord.js/Guild'
+import { MonoEmbed } from '@base/Embed'
+import { MonoCommand } from '@typings/index'
 import { formatTimestamp } from '@utils/formatters'
+import { Emoji } from 'discord.js'
+import { CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -25,7 +24,7 @@ export default class extends Command implements MonoCommand {
 		if(emoji.id) {
 			await interaction.reply({
 				embeds: [
-					new Embed()
+					new MonoEmbed()
 						.setTitle(`:${emoji.name}:`)
 						.setThumbnail(emoji.url!)
 						.addField(
@@ -49,7 +48,7 @@ export default class extends Command implements MonoCommand {
 		else {
 			await interaction.reply({
 				embeds: [
-					new Embed()
+					new MonoEmbed()
 						.setTitle(emoji.name!)
 						.setDescription(t('description', { link: `https://emojipedia.org/${emoji.name}` }))
 				]

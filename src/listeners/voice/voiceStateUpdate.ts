@@ -1,9 +1,9 @@
+import MonoGuild from '@base/discord.js/Guild'
 import Listener from '@base/Listener'
 import Mono from '@base/Mono'
-import { Collection, OverwriteResolvable, VoiceState } from 'discord.js'
-import MonoGuild from '@base/discord.js/Guild'
 import Console from '@utils/console'
-import chalk from 'chalk'
+import { ChannelType, OverwriteType } from 'discord-api-types/v10'
+import { OverwriteResolvable, VoiceChannel, VoiceState } from 'discord.js'
 
 export default new Listener(
 	'voiceStateUpdate',
@@ -13,31 +13,31 @@ export default new Listener(
 		const privateRoomsModule = (newState.guild as MonoGuild).modules.privateRooms
 		if(privateRoomsModule.enabled) {
 			try {
-				if(!oldState.guild.me?.permissions.has(['MOVE_MEMBERS', 'MANAGE_CHANNELS'])) return
+				if(!oldState.guild.members.me?.permissions.has(['MoveMembers', 'ManageChannels'])) return
 				if(newState.channelId === privateRoomsModule.joinChannelId) {
 					const privateRoomPermissionOverwrites: OverwriteResolvable[] = [{
 						id: client.user!.id,
-						type: 'member',
-						allow: ['VIEW_CHANNEL', 'MANAGE_CHANNELS']
+						type: OverwriteType.Member,
+						allow: ['ViewChannel', 'ManageChannels']
 					}, {
 						id: newState.member!.user.id,
-						type: 'member',
-						allow: ['VIEW_CHANNEL', 'MANAGE_CHANNELS', 'CONNECT']
+						type: OverwriteType.Member,
+						allow: ['ViewChannel', 'ManageChannels', 'Connect']
 					}]
 
 					if(privateRoomsModule.defaults.hidden) {
 						privateRoomPermissionOverwrites.push({
 							id: newState.guild.roles.everyone.id,
-							type: 'role',
-							deny: ['VIEW_CHANNEL']
+							type: OverwriteType.Role,
+							deny: ['ViewChannel']
 						})
 					}
 
 					if(privateRoomsModule.defaults.locked) {
 						privateRoomPermissionOverwrites.push({
 							id: newState.guild.roles.everyone.id,
-							type: 'role',
-							deny: ['CONNECT']
+							type: OverwriteType.Role,
+							deny: ['Connect']
 						})
 					}
 
@@ -46,12 +46,12 @@ export default new Listener(
 						.replace('{{nickname}}', newState.member!.displayName)
 						.replace('{{userId}}', newState.member!.user.id)
 
+						console.log((newState.channel as VoiceChannel).position)
 					const privateRoomCreated = await newState.guild.channels.create(
 						roomName,
 						{
-							type: 'GUILD_VOICE',
-							parent: newState.channel?.parent || undefined,
-							position: newState.channel?.calculatedPosition! + 1,
+							type: ChannelType.GuildVoice,
+							parent: newState.channel?.parent ?? undefined,
 							permissionOverwrites: privateRoomPermissionOverwrites
 						}
 					)
@@ -73,9 +73,8 @@ export default new Listener(
 					if(
 						activePrivateRoom
 						&& !(oldState.channel?.members.filter(
-							member => !member.user.bot,
-							{ return: 'collection' }
-						) as unknown as Collection).size
+							member => !member.user.bot
+						))!.size
 					) {
 						await oldState.channel?.delete()
 						await client.database.activePrivateRoom.delete({

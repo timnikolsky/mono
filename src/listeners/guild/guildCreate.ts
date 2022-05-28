@@ -1,10 +1,10 @@
+import MonoGuild from '@base/discord.js/Guild'
+import { InfoEmbed, MonoEmbed } from '@base/Embed'
 import Listener from '@base/Listener'
 import Mono from '@base/Mono'
-import MonoGuild from '@base/discord.js/Guild'
-import { TextChannel } from 'discord.js'
 import Console from '@utils/console'
-import { Embed, InfoEmbed } from '@base/Embed'
 import { getTranslatorFunction } from '@utils/localization'
+import { EmbedBuilder, TextChannel } from 'discord.js'
 
 export default new Listener(
 	'guildCreate',
@@ -27,11 +27,11 @@ export default new Listener(
 		// Warmly greet new guild's users
 
 		const t = getTranslatorFunction(guild.language)
-		const greetingChannel = <TextChannel> guild.systemChannel || guild.channels.cache.find(channel => channel.permissionsFor(guild.me!).has('SEND_MESSAGES') && channel.isText())
-		if(greetingChannel?.permissionsFor(guild.me!).has('SEND_MESSAGES')) {
+		const greetingChannel = <TextChannel> guild.systemChannel || guild.channels.cache.find(channel => channel.permissionsFor(guild.members.me!).has('SendMessages') && channel.isText())
+		if(greetingChannel?.permissionsFor(guild.members.me!).has('SendMessages')) {
 			await greetingChannel.send({
 				embeds: [
-					new Embed()
+					new EmbedBuilder()
 						.setTitle(t('common:greeting.title'))
 						.setDescription(t('common:greeting.description', {
 							monoLoungeLink: client.config.monoLoungeInviteLink
@@ -45,7 +45,7 @@ export default new Listener(
 
 		await ((await client.channels.fetch(process.env.MONO_LOGS_CHANNEL!)) as TextChannel).send({
 			embeds: [
-				new Embed()
+				new MonoEmbed()
 					.setTitle('Guild added')
 					.addField('Name', guild.name, true)
 					.addField('Owner', (await client.users.fetch(guild.ownerId)).tag, true)
@@ -56,7 +56,7 @@ export default new Listener(
 		})
 
 		if(!await guild.uploadCommands()) {
-			if(greetingChannel?.permissionsFor(guild.me!).has('SEND_MESSAGES')) {
+			if(greetingChannel?.permissionsFor(guild.members.me!).has('SendMessages')) {
 				await greetingChannel.send({
 					embeds: [
 						new InfoEmbed(t('common:noSlashCommandScope'))

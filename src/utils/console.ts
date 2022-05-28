@@ -3,24 +3,24 @@ import { ForegroundColor } from 'chalk'
 
 export default class Console {
 	static log(text: string) {
-		console.log(chalk.white.bgGray(' Log     ') + ' ' + text)
+		console.log(chalk.gray('Log     ') + ' ' + text)
 	}
 	static success(text: string) {
-		console.log(chalk.black.bgGreen(' Success ') + ' ' + text)
+		console.log(chalk.green('Success ') + ' ' + text)
 	}
 	static warning(text: string) {
-		console.log(chalk.black.bgYellow(' Warning ') + ' ' + text)
+		console.log(chalk.yellow('Warning ') + ' ' + text)
 	}
 	static error(text: string) {
-		console.log(chalk.black.bgRed(' Error   ') + ' ' + text)
+		console.log(chalk.red('Error   ') + ' ' + text)
 	}
 	static info(text: string) {
-		console.log(chalk.black.bgBlue(' Info    ') + ' ' + text)
+		console.log(chalk.blue('Info    ') + ' ' + text)
 	}
 	static event(text: string) {
-		console.log(chalk.black.bgMagenta(' Event   ') + ' ' + text)
+		console.log(chalk.magenta('Event   ') + ' ' + text)
 	}
 	static action(text: string) {
-		console.log(chalk.black.bgCyan(' Action  ') + ' ' + text)
+		console.log(chalk.cyan('Action  ') + ' ' + text)
 	}
 }
