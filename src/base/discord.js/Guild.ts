@@ -8,8 +8,7 @@ import Console from '@utils/console'
 import { getTranslatorFunction } from '@utils/localization'
 import { Command } from '@base/Command'
 
-export default // @ts-ignore
-class MonoGuild extends Guild {
+export default class MonoGuild extends Guild {
 	// public modules: { [x: string]: Module }
 	client!: Mono
 	modules!: GuildModules

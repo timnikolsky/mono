@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://tima:e5IMJtfq5IPe6W@localhost:5432/mono_new?schema=public"
+  url      = env("DATABASE_URL")
 }
 
 model Guild {
