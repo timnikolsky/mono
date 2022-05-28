@@ -16,6 +16,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: cd $HOME/projects/mono
       - run: git pull
+      - run: yarn
       - run: yarn build
       - run: yarn start
       # Deploy
