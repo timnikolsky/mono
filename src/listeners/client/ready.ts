@@ -10,7 +10,11 @@ export default new Listener(
 
 		client.guilds.cache.forEach(async (guild) => {
 			await (guild as MonoGuild).fetchCustomData()
-			await (guild as MonoGuild).uploadCommands()
+			try {
+				await (guild as MonoGuild).uploadCommands()
+			} catch(e) {
+				console.log(e)
+			}
 		})
 	}
 )
