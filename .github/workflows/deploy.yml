@@ -17,7 +17,7 @@ jobs:
       - run: cd $HOME/projects/mono/bot
       - run: git pull
       - run: yarn
-      - run: yarn build
-      - run: yarn start
+      # Temoporary solution
+      - run: yarn dev
       # Deploy
       # - run: cd dist && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . $HOME/mono
