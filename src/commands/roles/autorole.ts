@@ -23,6 +23,7 @@ export default class extends Command implements MonoCommand {
 				id: 'disable',
 				type: CommandOptionTypes.SUB_COMMAND
 			}],
+			userPermissionsRequired: ['ManageGuild'],
 			module: 'roles'
 		})
 	}

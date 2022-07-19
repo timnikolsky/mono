@@ -46,13 +46,13 @@ export default new Listener(
 						.replace('{{nickname}}', newState.member!.displayName)
 						.replace('{{userId}}', newState.member!.user.id)
 
-						console.log((newState.channel as VoiceChannel).position)
 					const privateRoomCreated = await newState.guild.channels.create(
 						roomName,
 						{
 							type: ChannelType.GuildVoice,
 							parent: newState.channel?.parent ?? undefined,
-							permissionOverwrites: privateRoomPermissionOverwrites
+							permissionOverwrites: privateRoomPermissionOverwrites,
+							userLimit: privateRoomsModule.defaults.limit
 						}
 					)
 					await newState.setChannel(privateRoomCreated)

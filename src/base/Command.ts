@@ -11,6 +11,7 @@ export class Command {
 	id!: string
 	options: CommandOption[]
 	botPermissionsRequired?: PermissionResolvable[]
+	userPermissionsRequired?: PermissionResolvable[]
 	module?: keyof GuildModules
 	disabledGlobally!: boolean
 
@@ -20,6 +21,7 @@ export class Command {
 		this.id = data.id
 		this.options = data.options
 		this.botPermissionsRequired = data.botPermissionsRequired
+		this.userPermissionsRequired = data.userPermissionsRequired
 		this.disabledGlobally = !!data.disabledGlobally
 		this.module = data.module
 	}

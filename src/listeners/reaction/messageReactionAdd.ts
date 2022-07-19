@@ -26,6 +26,7 @@ export default new Listener(
 
 			if(reactionRole) {
 				const member = await messageReaction.message.guild!.members.fetch(user.id)
+				if(member.user.id === client.user?.id) return
 				await messageReaction.message.fetch()
 				switch(reactionRole.message.mode) {
 					case ReactionRolesMessageMode.STANDARD:

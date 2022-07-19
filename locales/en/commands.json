@@ -128,10 +128,12 @@
 								}
 							}
 						},
-						"role": "Delete reaction role",
-						"option": {
-							"role": {
-								"description": "Reaction role you want to delete"
+						"role": {
+							"description": "Delete reaction role",
+							"options": {
+								"role": {
+									"description": "Reaction role you want to delete"
+								}
 							}
 						}
 					}
@@ -141,7 +143,7 @@
 		"managedRole": "This role is managed by bot or integration, I can't use it as autorole!",
 		"cantAccessRole": "I can't access this role! Make sure it takes place below any of roles I have.",
 		"missingPermissions": "I don't have enough permissions to add reactions on this message!",
-		"alreadyExists": "This reaction role already exists",
+		"alreadyExists": "This reaction role already exists. Unfortunately, creating multiple identical reaction roles is impossible yet.",
 		"creationDescription": "This reaction role message doesn't exist yet! Create one by selecting mode below:",
 		"chooseMode": "Choose mode",
 		"modes": {
@@ -192,7 +194,8 @@
 		"missingPermissions": "I have no permissions to ban this member",
 		"superior": "You can't ban this member",
 		"alreadyBanned": "This member is already banned",
-		"banned": "{{executor}} banned {{member}} (*{{reason}}*)"
+		"banned": "{{executor}} banned {{member}} (*{{reason}}*)",
+		"noReasonProvided": "No reason provided"
 	},
 	"kick": {
 		"_data": {
@@ -210,7 +213,8 @@
 		"cantKickSelf": "You can't kick yourself",
 		"missingPermissions": "I have no permissions to kick this member",
 		"superior": "You can't kick this member",
-		"kicked": "{{executor}} kicked {{member}} (*{{reason}}*)"
+		"kicked": "{{executor}} kicked {{member}} (*{{reason}}*)",
+		"noReasonProvided": "No reason provided"
 	},
 	"purge": {
 		"_data": {
@@ -312,15 +316,20 @@
 					}
 				},
 				"info": {
-					"description": "Get information about a module",
+					"description": "Get information about modules and enable/disable them.",
 					"options": {
-						"module": "Module you want to see information about"
+						"module": "Module you want to see information about."
 					}
 				}
 			}
 		},
-		"moduleEnabled": "Module {{module}} has been enabled. It may take some time to update slash commands.",
-		"moduleDisabled": "Module {{module}} has been disabled. It may take some time to update slash commands."
+		"moduleEnabled": "Module **{{module}}** has been enabled. It may take some time to update slash commands.",
+		"moduleDisabled": "Module **{{module}}** has been disabled. It may take some time to update slash commands.",
+		"moduleAlreadyEnabled": "Module **{{module}}** is already enabled.",
+		"moduleAlreadyDisabled": "Module **{{module}}** is already disabled.",
+		"modulesListTitle": "Modules",
+		"modulesListDescription": "Modules system allows you to use only the Mono functionality that you need.\n\nSelect a module below to get detailed information about it and enable or disable it.",
+		"selectModule": "Select module"
 	},
 	"private": {
 		"_data": {
@@ -398,6 +407,22 @@
 					"options": {
 						"locked": {
 							"description": "Whether a private room will be locked"
+						}
+					}
+				},
+				"kick": {
+					"description": "Kick user from private room",
+					"options": {
+						"user": {
+							"description": "User you want to kick"
+						}
+					}
+				},
+				"transfer": {
+					"description": "Transfer ownership of private room",
+					"options": {
+						"user": {
+							"description": "User you want to transfer ownership to"
 						}
 					}
 				}

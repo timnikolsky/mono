@@ -26,7 +26,7 @@
     "@modules": "src/modules"
   },
   "homepage": "https://github.com/mono-team/bot#readme",
-  "prisma": "src/prisma/schema.prisma",
+  "prisma": "./schema.prisma",
   "dependencies": {
     "@discordjs/builders": "https://gitpkg.now.sh/uni-inc/discord.js/packages/builders?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad",
     "@discordjs/rest": "https://gitpkg.now.sh/uni-inc/discord.js/packages/rest?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad",

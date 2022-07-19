@@ -68,6 +68,7 @@ export default class extends Command implements MonoCommand {
 					}]
 				}]
 			}],
+			userPermissionsRequired: ['ManageGuild'],
 			module: 'roles'
 		})
 	}
@@ -104,10 +105,10 @@ export default class extends Command implements MonoCommand {
 			// Check if this reaction role already exists
 			let reactionRole = await this.client.database.reactionRole.findFirst({
 				where: {
-					roleId: options.role!.id,
-					messageId: options.message?.id
+					roleId: options.role!.id
 				}
 			})
+
 			if (reactionRole) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('alreadyExists'))]

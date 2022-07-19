@@ -1,14 +1,14 @@
 {
 	"moderation": {
 		"name": "Moderation (Beta)",
-		"description": "Useful tools for moderators"
+		"description": "Standard moderation tools such as kick, ban, timeout, and warn. This module is still in beta and does not yet have all the needed features."
 	},
 	"privateRooms": {
 		"name": "Private Rooms",
-		"description": "Automatically creates voice rooms and deletes them, when they are empty. Configure default settings and manage channel permissions!"
+		"description": "Automatically creates voice rooms and deletes them, when they are empty.\n\nUse the `/private default <setting> <value>` command to change the default settings for new rooms.\n\nUse the `/private <setting> <value>` command to change the settings for current room you are in."
 	},
 	"roles": {
 		"name": "Roles",
-		"description": "Easily set up autoroles and reaction roles on your server"
+		"description": "Easily set up autoroles and reaction roles on your server.\n\nUse `/autorole` command to set up autorole. This role will be assigned to all new users.\n\nUse `/reaction-roles create` command to create reaction roles. These roles will be assigned to users, who react to the message with the specified emojis."
 	}
 }

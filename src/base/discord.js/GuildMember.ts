@@ -1,15 +1,10 @@
-import { ChatInputApplicationCommandData, Guild, GuildMember } from 'discord.js'
-import { RawGuildData, RawGuildMemberData } from 'discord.js/typings/rawDataTypes'
-import Mono from '@base/Mono'
-import { TFunction } from 'i18next'
-import { generateOptions } from '@utils/index'
-import { GuildModules } from '@typings/index'
-import Console from '@utils/console'
-import { getTranslatorFunction } from '@utils/localization'
 import MonoUser from '@base/discord.js/User'
+import Mono from '@base/Mono'
+import { GuildModules } from '@typings/index'
+import { Guild, GuildMember } from 'discord.js'
+import { RawGuildMemberData } from 'discord.js/typings/rawDataTypes'
 
-export default // @ts-ignore
-class MonoGuildMember extends GuildMember {
+export default class MonoGuildMember extends GuildMember {
 	// public modules: { [x: string]: Module }
 	client!: Mono
 	user!: MonoUser

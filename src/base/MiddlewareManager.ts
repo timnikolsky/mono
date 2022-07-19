@@ -1,5 +1,5 @@
 import { MiddlewareContext, MiddlewareFunction } from '@typings/index'
-import { checkBotPermissions, checkModuleEnabled, convertOptions } from '../middleware'
+import { checkBotPermissions, checkModuleEnabled, checkUserPermissions, convertOptions } from '../middleware'
 import { MiddlewareResult } from '../enums'
 
 export default class MiddlewareManager {
@@ -7,6 +7,7 @@ export default class MiddlewareManager {
 
 	constructor() {
 		this.use(checkBotPermissions)
+		this.use(checkUserPermissions)
 		this.use(checkModuleEnabled)
 		this.use(convertOptions)
 	}

@@ -21,8 +21,8 @@ export default class extends Command implements MonoCommand {
 		})
 	}
 
-	async execute({ interaction, t }: CommandContext) {
-		const result = eval(<string> interaction.options.getString('code'))
+	async execute({ interaction }: CommandContext) {
+		const result = eval(<string>interaction.options.getString('code'))
 		await interaction.reply({
 			embeds: [
 				new MonoEmbed()

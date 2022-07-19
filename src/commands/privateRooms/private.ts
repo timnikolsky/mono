@@ -7,6 +7,7 @@ import { ActivePrivateRoom } from '@prisma/client'
 import { MonoCommand } from '@typings/index'
 import { ChannelType, OverwriteType } from 'discord-api-types/v10'
 import { OverwriteResolvable, User, VoiceChannel } from 'discord.js'
+import { ChannelTypes } from 'discord.js/typings/enums'
 import { CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
@@ -58,7 +59,7 @@ export default class extends Command implements MonoCommand {
 					id: 'channel',
 					type: CommandOptionTypes.CHANNEL,
 					// TODO
-					// channelTypes: [],
+					channelTypes: [2],
 					required: false
 				}]
 			}, {
@@ -113,7 +114,7 @@ export default class extends Command implements MonoCommand {
 				}]
 			}],
 			module: 'privateRooms',
-			botPermissionsRequired: ['MoveMembers', 'ManageChannels', 'ManageRoles']
+			botPermissionsRequired: ['MoveMembers', 'ManageChannels', 'ManageRoles'],
 		})
 	}
 
@@ -216,7 +217,7 @@ export default class extends Command implements MonoCommand {
 
 				await interaction.reply({
 					embeds: [new SuccessEmbed(t(
-						options.hidden
+						options.locked
 							? 'defaultLocked'
 							: 'defaultOpened'
 					))]
@@ -328,7 +329,7 @@ export default class extends Command implements MonoCommand {
 
 			await interaction.reply({
 				embeds: [new SuccessEmbed(t(
-					options.hidden
+					options.locked
 						? 'locked'
 						: 'opened'
 				))]
@@ -400,18 +401,18 @@ async function updatePrivateRoom(channel: VoiceChannel, privateRoomData: ActiveP
 
 	if(privateRoomData.hidden) {
 		// @ts-ignore
-		permissionOverwrites[2].deny.push('VIEW_CHANNEL')
+		permissionOverwrites[2].deny.push('ViewChannel')
 	} else {
 		// @ts-ignore
-		permissionOverwrites[2].allow.push('VIEW_CHANNEL')
+		permissionOverwrites[2].allow.push('ViewChannel')
 	}
 
 	if(privateRoomData.locked) {
 		// @ts-ignore
-		permissionOverwrites[2].deny.push('CONNECT')
+		permissionOverwrites[2].deny.push('Connect')
 	} else {
 		// @ts-ignore
-		permissionOverwrites[2].allow.push('CONNECT')
+		permissionOverwrites[2].allow.push('Connect')
 	}
 
 	await channel.edit({

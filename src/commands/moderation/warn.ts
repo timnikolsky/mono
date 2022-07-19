@@ -36,6 +36,7 @@ export default class extends Command implements MonoCommand {
 					required: true
 				}]
 			}],
+			userPermissionsRequired: ['BanMembers'],
 			module: 'moderation'
 		})
 	}

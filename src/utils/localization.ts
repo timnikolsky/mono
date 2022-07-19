@@ -24,12 +24,12 @@ export function getTranslatorFunction(language: string, context?: string): Trans
 		for(let pathKey of path) {
 			if(!resultString[pathKey]) return key
 			resultString = resultString[pathKey]
-
 		}
 
 		if(typeof resultString !== 'string') return key
 
-		resultString = resultString.replace( // Replaces {{templates}} to values
+		// Replace {{templates}} to values
+		resultString = resultString.replace(
 			new RegExp('\{{.*?\}}', 'g'),
 			(match) => {
 				return parameters[match.substring(2, match.length - 2)]
@@ -37,6 +37,5 @@ export function getTranslatorFunction(language: string, context?: string): Trans
 		)
 
 		return resultString
-		// console.log(require(`../../locales/${language}/${fileName}.json`))
 	}
 }

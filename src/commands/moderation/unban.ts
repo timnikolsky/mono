@@ -19,6 +19,7 @@ export default class extends Command implements MonoCommand {
 				type: CommandOptionTypes.STRING
 			}],
 			botPermissionsRequired: ['BanMembers'],
+			userPermissionsRequired: ['BanMembers'],
 			module: 'moderation'
 		})
 	}

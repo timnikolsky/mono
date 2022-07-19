@@ -4,8 +4,6 @@ import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
 import { CommandOptionTypes } from '../../enums'
-import Module from '@base/Module'
-import moduleIcons from '../../assets/moduleIcons'
 import { getTranslatorFunction } from '@utils/localization'
 import Console from '@utils/console'
 import chalk from 'chalk'
@@ -22,7 +20,8 @@ export default class extends Command implements MonoCommand {
 					value: language
 				})),
 				required: true
-			}]
+			}],
+			disabledGlobally: false
 		})
 	}
 

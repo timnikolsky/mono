@@ -21,7 +21,7 @@ export default class MonoGuild extends Guild {
 	}
 
 	public get loaded() {
-		return !!this.customData
+		return Boolean(this.customData)
 	}
 
 	public async fetchCustomData() {
@@ -54,27 +54,26 @@ export default class MonoGuild extends Guild {
 			.map((CommandClass) => {
 				let command = new CommandClass(this)
 				if(command.disabledGlobally) return
-				// @ts-ignore
 				if(command.module && !this.modules[command.module].enabled) return
+
 				return {
 					name: command.id,
 					description: t(`commands:${command.id}._data.description`),
 					type: ApplicationCommandType.ChatInput,
 					options: generateOptions(this, command.options, {
 						rootCommandId: command.id
-					})
-				}
+					}),
+				} as ChatInputApplicationCommandData
 			})
 		// Remove empty entries from array
 		generatedCommands = generatedCommands.filter(Boolean)
 
-		// @ts-ignore
+		// @ts-expect-error
 		return generatedCommands
 	}
 
 	public async uploadCommands() {
 		try {
-			// console.log(JSON.stringify(this.generateCommands(), null, 2))
 			await this.commands.set(this.generateCommands())
 			Console.info(`Uploaded slash command to guild '${this.name}'`)
 			return true

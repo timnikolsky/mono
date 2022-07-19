@@ -10,7 +10,6 @@ export default class Module {
 	client: Mono
 	guild!: MonoGuild
 	enabledDefault: boolean
-
 	enabled!: boolean
 
 	constructor(guild: MonoGuild, moduleData: ModuleData) {

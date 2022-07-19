@@ -19,6 +19,7 @@ export default class extends Command implements MonoCommand {
 				type: CommandOptionTypes.STRING
 			}],
 			botPermissionsRequired: ['KickMembers'],
+			userPermissionsRequired: ['KickMembers'],
 			module: 'moderation'
 		})
 	}
@@ -64,7 +65,7 @@ export default class extends Command implements MonoCommand {
 			embeds: [new SuccessEmbed(t('kicked', {
 				executor: interaction.user,
 				member: user,
-				reason: reason ?? t('common:noReasonProvided')
+				reason: reason ?? t('noReasonProvided')
 			}))]
 		})
 	}

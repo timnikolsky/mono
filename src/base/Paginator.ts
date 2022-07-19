@@ -39,7 +39,6 @@ export default class Paginator<T> {
 	async init(interaction: CommandInteraction) {
 		const payload = await this.payloadGenerator(this.data[this.page], this.page)
 
-		// TODO: Fix
 		payload.components
 			? payload.components.unshift(this.getNavigationButtons(this.page))
 			: payload.components = [this.getNavigationButtons(this.page)]

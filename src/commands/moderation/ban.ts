@@ -24,6 +24,7 @@ export default class extends Command implements MonoCommand {
 				maxValue: 7
 			}],
 			botPermissionsRequired: ['BanMembers'],
+			userPermissionsRequired: ['BanMembers'],
 			module: 'moderation'
 		})
 	}
@@ -80,7 +81,7 @@ export default class extends Command implements MonoCommand {
 			embeds: [new SuccessEmbed(t('banned', {
 				executor: interaction.user,
 				member: user,
-				reason: reason ?? t('common:noReasonProvided')
+				reason: reason ?? t('noReasonProvided')
 			}))]
 		})
 	}

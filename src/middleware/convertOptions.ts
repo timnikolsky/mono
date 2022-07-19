@@ -60,14 +60,15 @@ async function convertOption(context: MiddlewareContext, discordOption: CommandI
 			let emoji
 			// If emoji is standard
 			if(/\p{Emoji_Presentation}|\p{Extended_Pictographic}/gmu.test(discordOption.value as string)) {
-				// @ts-ignore
+				// @ts-expect-error
 				emoji = new Emoji(context.interaction.client, {
 					name: (discordOption.value as string).match(/\p{Emoji_Presentation}|\p{Extended_Pictographic}/gmu)![0]
 				})
 			}
 			// If emoji is custom
 			else {
-				emoji = context.interaction.client.emojis.cache.get((discordOption.value as string).match(/\d+/g)![0])
+				const optionNumbers = (discordOption.value as string).match(/\d+/g) ?? ['1']
+				emoji = context.interaction.client.emojis.cache.get(optionNumbers[optionNumbers.length - 1])
 			}
 			if (!emoji) {
 				await context.interaction.reply({ embeds: [new ErrorEmbed(t('common:alertMessages.wrongEmoji'))] })
