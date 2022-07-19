@@ -18,6 +18,6 @@ jobs:
       - run: git pull
       - run: yarn
       # Temoporary solution
-      - run: yarn dev
+      - run: yarn start
       # Deploy
       # - run: cd dist && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . $HOME/mono

@@ -9,13 +9,7 @@ import { MonoCommand } from '@typings/index'
 import MiddlewareManager from '@base/MiddlewareManager'
 
 export default class Mono extends Client {
-	public database = new PrismaClient({
-		datasources: {
-			db: {
-				url: process.env.DATABASE_URL
-			}
-		}
-	})
+	public database = new PrismaClient()
 	public commands: (typeof MonoCommand)[] = []
 	public config = config
 	public modules = modules
