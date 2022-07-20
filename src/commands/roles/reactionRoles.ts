@@ -137,19 +137,19 @@ export default class extends Command implements MonoCommand {
 									.setCustomId('mode')
 									.setPlaceholder(t('chooseMode'))
 									.setOptions([{
-										label: t('mode.standard.name'),
+										label: t('modes.standard.name'),
 										description: t('mode.standard.description'),
 										value: '0'
 									}, {
-										label: t('mode.unique.name'),
+										label: t('modes.unique.name'),
 										description: t('mode.unique.description'),
 										value: '1'
 									}, {
-										label: t('mode.addOnly.name'),
+										label: t('modes.addOnly.name'),
 										description: t('mode.addOnly.description'),
 										value: '2'
 									}, {
-										label: t('mode.removeOnly.name'),
+										label: t('modes.removeOnly.name'),
 										description: t('mode.removeOnly.description'),
 										value: '3'
 									}])
