@@ -23,6 +23,7 @@ import Paginator from '@base/Paginator'
 import emojis from '../../assets/emojis'
 import { formatMessage } from '@utils/formatters'
 import RolesModule from '@modules/Roles'
+import { ReactionRole, ReactionRoleMessage } from '@prisma/client'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -225,7 +226,7 @@ export default class extends Command implements MonoCommand {
 		}
 
 		if (options.subCommand === 'list') {
-			const reactionRoleMessages = await this.client.database.reactionRoleMessage.findMany({
+			const reactionRoleMessagesRaw = await this.client.database.reactionRoleMessage.findMany({
 				where: {
 					guildId: interaction.guild!.id
 				},
@@ -234,7 +235,23 @@ export default class extends Command implements MonoCommand {
 				}
 			})
 
-			if(reactionRoleMessages.length === 0) {
+			const reactionRoleMessages = [] as (ReactionRoleMessage & {
+				reactionRoles: ReactionRole[];
+			})[]
+
+			for (const reactionRoleMessage of reactionRoleMessagesRaw) {
+				try {
+					const channel = await this.client.channels.fetch(reactionRoleMessage.channelId) as GuildTextBasedChannel
+					const message = await channel.messages.fetch(reactionRoleMessage.id)
+					if(message) {
+						reactionRoleMessages.push(reactionRoleMessage)
+					}
+				} catch (e) {
+					continue
+				}
+			}
+
+			if(reactionRoleMessagesRaw.length === 0) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('noMessages'))]
 				})

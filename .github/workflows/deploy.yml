@@ -15,9 +15,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: cd $HOME/projects/mono/bot
+      - run: pm2 stop mono-bot
       - run: git pull
       - run: yarn
-      # Temoporary solution
-      - run: yarn start
+      - run: npx prisma db push
+      - run: pm2 start mono-bot
       # Deploy
       # - run: cd dist && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . $HOME/mono

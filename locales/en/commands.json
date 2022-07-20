@@ -3,7 +3,7 @@
 		"_data": {
 			"description": "Mono statistics and useful links"
 		},
-		"description": "Mono was designed with special attention to comfort usability and high customization to help you to get rid of overage of bots.",
+		"description": "Mono was designed with special attention to comfort usability and high customization to make job easier for both server owners and members.",
 		"servers": "Servers",
 		"supportServer": "Support server",
 		"title": "Mono",
@@ -325,7 +325,7 @@
 		},
 		"moduleEnabled": "Module **{{module}}** has been enabled. It may take some time to update slash commands.",
 		"moduleDisabled": "Module **{{module}}** has been disabled. It may take some time to update slash commands.",
-		"moduleAlreadyEnabled": "Module **{{module}}** is already enabled.",
+		"moduleAlreadyEnabled": "The **{{module}}** module is already enabled.",
 		"moduleAlreadyDisabled": "Module **{{module}}** is already disabled.",
 		"modulesListTitle": "Modules",
 		"modulesListDescription": "Modules system allows you to use only the Mono functionality that you need.\n\nSelect a module below to get detailed information about it and enable or disable it.",

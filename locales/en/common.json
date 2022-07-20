@@ -74,5 +74,6 @@
 		"title": "Hi!",
 		"description": "Thank you for adding me to your server!\nHere's some information you need to know before using me:\n\nI use slash commands. Just type `/` and you'll see all of them!\n\nMy functionality is divided into modules. Use `/module enable` command to enable modules you need.\n\nLanguage can be changed using `/language` command.\n\nFeel free to join [support server]({{monoLoungeLink}}) if you have any questions or suggestions!"
 	},
-	"noSlashCommandScope": "Looks like you added me without a permission to create slash commands here! Try to add me again using button in my profile."
+	"noSlashCommandScope": "Looks like you added me without a permission to create slash commands here! Try to add me again using button in my profile.",
+	"messageJump": "Jump to message"
 }

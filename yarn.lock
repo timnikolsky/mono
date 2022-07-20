@@ -27,9 +27,9 @@
     ts-mixer "^6.0.1"
     tslib "^2.3.1"
 
-"@discordjs/builders@https://gitpkg.now.sh/uni-inc/discord.js/packages/builders?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad":
+"@discordjs/builders@https://gitpkg.now.sh/uni-inc/discord.js/packages/builders?8467b28c4be149dce96ba27e49b439a46810a175":
   version "0.14.0-dev"
-  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/builders?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad#fc2129e72f220f6bfcd2deecff1e1657094132be"
+  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/builders?8467b28c4be149dce96ba27e49b439a46810a175#e20ea66a30bcadc305aa9314d4bf366debea3312"
   dependencies:
     "@sapphire/shapeshift" "^3.0.0"
     "@sindresorhus/is" "^4.6.0"
@@ -58,9 +58,9 @@
     tslib "^2.3.1"
     undici "^5.2.0"
 
-"@discordjs/rest@https://gitpkg.now.sh/uni-inc/discord.js/packages/rest?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad":
+"@discordjs/rest@https://gitpkg.now.sh/uni-inc/discord.js/packages/rest?8467b28c4be149dce96ba27e49b439a46810a175":
   version "0.5.0-dev"
-  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/rest?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad#dab3a37ed57037ec676669ac812fe7d1f6f6068e"
+  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/rest?8467b28c4be149dce96ba27e49b439a46810a175#5ccc2a8eee5b0e26a301ca597186e844c70d1f20"
   dependencies:
     "@discordjs/collection" "workspace:^"
     "@sapphire/async-queue" "^1.3.1"
@@ -81,9 +81,9 @@
     tslib "^2.3.1"
     ws "^8.2.3"
 
-"@discrodjs/collections@https://gitpkg.now.sh/uni-inc/discord.js/packages/collections?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad":
+"@discrodjs/collections@https://gitpkg.now.sh/uni-inc/discord.js/packages/collections?8467b28c4be149dce96ba27e49b439a46810a175":
   version "0.0.0"
-  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/collections?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad#aa27f39a547726f9f7afd043711756ae57a5feb8"
+  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/collections?8467b28c4be149dce96ba27e49b439a46810a175#aa27f39a547726f9f7afd043711756ae57a5feb8"
 
 "@eslint/eslintrc@^1.3.0":
   version "1.3.0"
@@ -1122,9 +1122,9 @@ discord-api-types@^0.33.0:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.33.0.tgz#4c20b3a85b6d78ce71954a506e98b98ac3105661"
   integrity sha512-RS1dMM6xuMhdHwQJ0T+XuCD7v1tKnyZ89Eq6q/DbOJWMbIh3ihgAzDhcF70QsFCtk9a5Gn9XU29S7eoEXuwQ5w==
 
-"discord.js@https://gitpkg.now.sh/uni-inc/discord.js/packages/discord.js?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad":
+"discord.js@https://gitpkg.now.sh/uni-inc/discord.js/packages/discord.js?8467b28c4be149dce96ba27e49b439a46810a175":
   version "14.0.0-dev"
-  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/discord.js?b219cd31f4b5e4e35ddaf00ff476bad380dad4ad#8181e52fee405dedb583913ca2410df9801f5822"
+  resolved "https://gitpkg.now.sh/uni-inc/discord.js/packages/discord.js?8467b28c4be149dce96ba27e49b439a46810a175#33f1b202c5d9fe16dc9eb0b775a0e4b3a448f9cc"
   dependencies:
     "@discordjs/builders" "https://gitpkg.now.sh/uni-inc/discord.js/packages/builders?6ca95be7bbc12595649bb4af36ced9d03cec2ecb"
     "@discordjs/collection" "https://gitpkg.now.sh/uni-inc/discord.js/packages/collection?6ca95be7bbc12595649bb4af36ced9d03cec2ecb"
@@ -2101,7 +2101,7 @@ lodash.merge@^4.6.2:
 lodash.snakecase@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.snakecase/-/lodash.snakecase-4.1.1.tgz#39d714a35357147837aefd64b5dcbb16becd8f8d"
-  integrity sha1-OdcUo1NXFHg3rv1ktdy7Fr7Nj40=
+  integrity sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==
 
 lodash@*, lodash@^4.17.13, lodash@^4.17.15:
   version "4.17.21"
@@ -3442,10 +3442,15 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-ws@^8.2.3, ws@^8.5.0:
+ws@^8.2.3:
   version "8.6.0"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.6.0.tgz#e5e9f1d9e7ff88083d0c0dd8281ea662a42c9c23"
   integrity sha512-AzmM3aH3gk0aX7/rZLYvjdvZooofDu3fFOzGqcSnQ1tOcTWwhM/o+q++E8mAyVVIyUdajrkzWUGftaVSDLn1bw==
+
+ws@^8.5.0:
+  version "8.8.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.8.1.tgz#5dbad0feb7ade8ecc99b830c1d77c913d4955ff0"
+  integrity sha512-bGy2JzvzkPowEJV++hF07hAD6niYSr0JzBNo/J29WsB57A2r7Wlc1UFcTR9IzrPvuNVO4B8LGqF8qcpsVOhJCA==
 
 xtend@^4.0.0:
   version "4.0.2"

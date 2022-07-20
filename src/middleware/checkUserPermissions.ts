@@ -1,4 +1,5 @@
 import MonoGuild from '@base/discord.js/Guild'
+import MonoUser from '@base/discord.js/User'
 import { ErrorEmbed } from '@base/Embed'
 import { MiddlewareContext } from '@typings/index'
 import { getTranslatorFunction } from '@utils/localization'
@@ -6,6 +7,8 @@ import { GuildMember, GuildTextBasedChannel, PermissionResolvable } from 'discor
 import { MiddlewareResult } from '../enums'
 
 export default async function(context: MiddlewareContext) {
+	if((context.interaction.user as MonoUser).isStaff) return MiddlewareResult.NEXT
+
 	const channel = context.commandContext.interaction?.channel as GuildTextBasedChannel
 	if(!channel) return MiddlewareResult.BREAK
 
