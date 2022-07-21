@@ -16,5 +16,7 @@ export default new Listener(
 				console.log(e)
 			}
 		})
+
+		client.user?.setStatus('online')
 	}
 )
