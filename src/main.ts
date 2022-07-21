@@ -39,6 +39,9 @@ const client = new Mono({
 		Guild: () => MonoGuild,
 		GuildMember: () => MonoGuildMember,
 		User: () => MonoUser
+	},
+	presence: {
+		status: 'idle',
 	}
 })
 

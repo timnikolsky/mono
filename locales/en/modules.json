@@ -5,7 +5,7 @@
 	},
 	"privateRooms": {
 		"name": "Private Rooms",
-		"description": "Automatically creates voice rooms and deletes them, when they are empty.\n\nUse the `/private default <setting> <value>` command to change the default settings for new rooms.\n\nUse the `/private <setting> <value>` command to change the settings for current room you are in."
+		"description": "Automatically creates voice rooms and deletes them, when they are empty.\n\nUse the `/private default <setting> <value>` command to change the default settings for new rooms.\n\nUse the `/private <setting> <value>` command to change the settings for your active private room you own."
 	},
 	"roles": {
 		"name": "Roles",

@@ -17,7 +17,7 @@ export default class extends Command implements MonoCommand {
 				type: 5
 			}],
 			staff: true,
-			disabledGlobally: process.env.mode === 'production'
+			disabledGlobally: process.env.MODE === 'production'
 		})
 	}
 

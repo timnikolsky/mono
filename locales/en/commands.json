@@ -310,7 +310,7 @@
 					}
 				},
 				"disable": {
-					"description": "Enable module on this server",
+					"description": "Disable module on this server",
 					"options": {
 						"module": "Module you want to disable"
 					}
@@ -379,7 +379,7 @@
 					}
 				},
 				"name": {
-					"description": "Set new private room name",
+					"description": "Set new name for your private room",
 					"options": {
 						"name": {
 							"description": "New private room name"
@@ -387,7 +387,7 @@
 					}
 				},
 				"limit": {
-					"description": "Set private room user limit",
+					"description": "Set user limit for your private room",
 					"options": {
 						"limit": {
 							"description": "Number of users that can be in private room (0-99). Type 0 to disable."
@@ -395,7 +395,7 @@
 					}
 				},
 				"hidden": {
-					"description": "Set whether a private room will be hidden",
+					"description": "Set whether your private room will be hidden",
 					"options": {
 						"hidden": {
 							"description": "Whether a private room will be hidden"
@@ -403,7 +403,7 @@
 					}
 				},
 				"locked": {
-					"description": "Set whether a private room will be locked",
+					"description": "Set whether your private room will be locked",
 					"options": {
 						"locked": {
 							"description": "Whether a private room will be locked"
@@ -411,7 +411,7 @@
 					}
 				},
 				"kick": {
-					"description": "Kick user from private room",
+					"description": "Kick user from your private room",
 					"options": {
 						"user": {
 							"description": "User you want to kick"
@@ -419,7 +419,7 @@
 					}
 				},
 				"transfer": {
-					"description": "Transfer ownership of private room",
+					"description": "Transfer ownership of your private room",
 					"options": {
 						"user": {
 							"description": "User you want to transfer ownership to"
