@@ -9,6 +9,21 @@ import { EmbedBuilder, TextChannel } from 'discord.js'
 export default new Listener(
 	'guildCreate',
 	async (client: Mono, guild: MonoGuild) => {
+
+		Console.event(`Mono was added to guild '${guild.name}' (${guild.id})`)
+
+		await ((await client.channels.fetch(process.env.MONO_LOGS_CHANNEL!)) as TextChannel).send({
+			embeds: [
+				new MonoEmbed()
+					.setTitle('Guild added')
+					.addField('Name', guild.name, true)
+					.addField('Owner', (await client.users.fetch(guild.ownerId)).tag, true)
+					.addField('Members', guild.memberCount.toString(), true)
+					.addField('Id', '`' + guild.id + '`')
+					.setColor('#43B581')
+			]
+		})
+
 		// Add Guild to database
 		client.database.guild.create({
 			data: {
@@ -41,19 +56,6 @@ export default new Listener(
 			})
 		}
 
-		Console.event(`Mono was added to guild '${guild.name}' (${guild.id})`)
-
-		await ((await client.channels.fetch(process.env.MONO_LOGS_CHANNEL!)) as TextChannel).send({
-			embeds: [
-				new MonoEmbed()
-					.setTitle('Guild added')
-					.addField('Name', guild.name, true)
-					.addField('Owner', (await client.users.fetch(guild.ownerId)).tag, true)
-					.addField('Members', guild.memberCount.toString(), true)
-					.addField('Id', '`' + guild.id + '`')
-					.setColor('#43B581')
-			]
-		})
 
 		if(!await guild.uploadCommands()) {
 			if(greetingChannel?.permissionsFor(guild.members.me!).has('SendMessages')) {

@@ -24,6 +24,7 @@ import emojis from '../../assets/emojis'
 import { formatMessage } from '@utils/formatters'
 import RolesModule from '@modules/Roles'
 import { ReactionRole, ReactionRoleMessage } from '@prisma/client'
+import role from '@commands/information/role'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -83,10 +84,11 @@ export default class extends Command implements MonoCommand {
 				return
 			}
 
+			console.log(this.guild.members.me!.roles.highest.comparePositionTo(options.role!))
+
 			if (
-				!options.role?.managed
-				&& !this.guild.members.me!.permissions.has('ManageRoles')
-				&& this.guild.members.me!.roles.highest.comparePositionTo(options.role!) > 0
+				!this.guild.members.me!.permissions.has('ManageRoles')
+				|| this.guild.members.me!.roles.highest.comparePositionTo(options.role!) < 0
 			) {
 				await interaction.reply({
 					embeds: [new ErrorEmbed(t('commands:autorole.cantAccessRole'))]
@@ -138,19 +140,19 @@ export default class extends Command implements MonoCommand {
 									.setPlaceholder(t('chooseMode'))
 									.setOptions([{
 										label: t('modes.standard.name'),
-										description: t('mode.standard.description'),
+										description: t('modes.standard.description'),
 										value: '0'
 									}, {
 										label: t('modes.unique.name'),
-										description: t('mode.unique.description'),
+										description: t('modes.unique.description'),
 										value: '1'
 									}, {
 										label: t('modes.addOnly.name'),
-										description: t('mode.addOnly.description'),
+										description: t('modes.addOnly.description'),
 										value: '2'
 									}, {
 										label: t('modes.removeOnly.name'),
-										description: t('mode.removeOnly.description'),
+										description: t('modes.removeOnly.description'),
 										value: '3'
 									}])
 							]),
@@ -167,8 +169,7 @@ export default class extends Command implements MonoCommand {
 				const replyMessage = await interaction.fetchReply() as Message
 
 				const componentInteraction = await replyMessage.awaitMessageComponent({
-					filter: (i) => i.user.id === interaction.user.id,
-					time: 30_000
+					filter: (i) => i.user.id === interaction.user.id
 				})
 
 				if (componentInteraction.customId === 'cancel') {

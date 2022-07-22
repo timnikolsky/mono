@@ -78,13 +78,13 @@ async function convertOption(context: MiddlewareContext, discordOption: CommandI
 		case CommandOptionTypes.MESSAGE:
 			console.log(discordOption.options)
 			if (!/(https:\/\/)?(canary\.)?discord(app)?.com\/channels\/\d{18,19}\/\d{18,19}\/\d{18,19}/.test(discordOption.value as string)) {
-				await context.interaction.reply({ embeds: [new ErrorEmbed('Use message link')] })
+				await context.interaction.reply({ embeds: [new ErrorEmbed(t('common:alertMessages.useMessageLink'))] })
 				throw new Error()
 			}
 			const channel = (await context.interaction.client.channels.fetch((discordOption.value as string).match(/\d{18,19}/g)![1])) as GuildTextBasedChannel
 			const message = await channel?.messages.fetch((discordOption.value as string).match(/\d{18,19}/g)![2])
 			if (!channel || !message) {
-				await context.interaction.reply({ embeds: [new ErrorEmbed('Unable to find that message')] })
+				await context.interaction.reply({ embeds: [new ErrorEmbed(t('common:alertMessages.messageNotFound'))] })
 				throw new Error()
 			}
 			return message
