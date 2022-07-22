@@ -14,6 +14,7 @@ export default new Listener(
 		if(privateRoomsModule.enabled) {
 			try {
 				if(!oldState.guild.members.me?.permissions.has(['MoveMembers', 'ManageChannels'])) return
+
 				if(newState.channelId === privateRoomsModule.joinChannelId) {
 					const privateRoomPermissionOverwrites: OverwriteResolvable[] = [{
 						id: client.user!.id,
@@ -55,7 +56,8 @@ export default new Listener(
 							userLimit: privateRoomsModule.defaults.limit
 						}
 					)
-					await newState.setChannel(privateRoomCreated)
+					
+					await newState.setChannel(privateRoomCreated) 
 					await client.database.activePrivateRoom.create({
 						data: {
 							channelId: privateRoomCreated.id,
@@ -63,6 +65,7 @@ export default new Listener(
 						}
 					})
 				}
+				
 				if(oldState.channelId !== newState.channelId && oldState.channelId) {
 					const activePrivateRoom = await client.database.activePrivateRoom.findFirst({
 						where: {

@@ -68,7 +68,9 @@
 		"botMissingPermissions": "I need these required permissions to use this command: {{list}}",
 		"userMissingPermissions": "You need these required permissions to use this command: {{list}}",
 		"moduleRequired": "This command requires `{{moduleName}}` module to be enabled",
-		"wrongEmoji": "Looks like emoji you provided is invalid or external"
+		"wrongEmoji": "Looks like emoji you provided is invalid or external",
+		"useMessageLink": "Looks like message link you provided is invalid, make sure link is correct",
+		"messageNotFound": "Couldn't find message with provided link"
 	},
 	"greeting": {
 		"title": "Hi!",
