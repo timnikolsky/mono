@@ -15,7 +15,6 @@ import MonoUser from '@base/discord.js/User'
 import { IntentsBitField, Partials } from 'discord.js'
 import { config } from 'dotenv'
 import Mono from './base/Mono'
-import chalk from 'chalk'
 
 config()
 

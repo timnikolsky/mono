@@ -112,8 +112,7 @@ export default class extends Command implements MonoCommand {
 					required: true
 				}]
 			}],
-			module: 'privateRooms',
-			botPermissionsRequired: ['MoveMembers', 'ManageChannels', 'ManageRoles'],
+			module: 'privateRooms'
 		})
 	}
 
@@ -125,14 +124,16 @@ export default class extends Command implements MonoCommand {
 		if(subCommand === 'setup') {
 			if(!member.permissions.has('ManageGuild')) {
 				await interaction.reply({
-					embeds: [new ErrorEmbed(t('noPermissions'))]
+					embeds: [new ErrorEmbed(t('common:alertMessages.userMissingPermissions', {
+						list: 'permissions.ManageGuild'
+					}))]
 				})
 				return
 			}
 
 			// If channel not specified, create it automatically
 			if(!options.channel) {
-				if(!interaction.guild!.members.me!.permissions.has('ManageMessages')) {
+				if(!interaction.guild!.members.me!.permissions.has('ManageChannels')) {
 					await interaction.reply({
 						embeds: [new ErrorEmbed(t('cantCreateChannel'))]
 					})
@@ -169,7 +170,9 @@ export default class extends Command implements MonoCommand {
 		if(subCommandGroup === 'default') {
 			if(!member.permissions.has('ManageGuild')) {
 				await interaction.reply({
-					embeds: [new ErrorEmbed(t('noPermissions'))]
+					embeds: [new ErrorEmbed(t('common:alertMessages.userMissingPermissions', {
+						list: 'permissions.ManageGuild'
+					}))]
 				})
 				return
 			}

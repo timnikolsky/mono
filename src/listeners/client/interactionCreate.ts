@@ -36,27 +36,6 @@ export default new Listener(
 
 		const options = middlewareContext.commandOptions
 
-		// for(const discordOption of interaction.options.data) {
-		// 	if(discordOption.type === 'USER') {
-		// 		// @ts-ignore
-		// 		options[discordOption.name] = await client.users.fetch(discordOption.value)
-		// 	} else {
-		// 		// @ts-ignore
-		// 		options[discordOption.name] = discordOption.value
-		// 	}
-		//
-		// 	if(discordOption.options)
-		// 	for(const discordSubOption of discordOption.options) {
-		// 		if(discordSubOption.type === 'USER') {
-		// 			// @ts-ignore
-		// 			options[discordSubOption.name] = await client.users.fetch(discordSubOption.value)
-		// 		} else {
-		// 			// @ts-ignore
-		// 			options[discordSubOption.name] = discordSubOption.value
-		// 		}
-		// 	}
-		// }
-
 		try {
 			await new (client.commands.filter(command => new command(interaction.guild as MonoGuild).id === interaction.commandName)[0])(interaction.guild as MonoGuild).execute(context, options)
 		} catch (e) {

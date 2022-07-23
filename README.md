@@ -3,6 +3,10 @@
     <img align="center" src="https://i.imgur.com/4wAV6Oc.png" width="384" alt="Mono Logo" title="Mono Logo"/>
 </div>
 
+## ⚠ Quick note
+
+As you can see, at the moment code is pretty messy somewhere, GitHub Actions are set up worng, and I'm making unclear commits directly into main branch. I just need some time to figure out how to organize this project :)
+
 ## About
 
 Mono is an open source multipurpose Discord bot coded with warmth and love in Typescript using [Discord.js](https://github.com/discordjs/discord.js).
@@ -21,6 +25,6 @@ Big thanks for these people who contributed to the Mono creation:
 * [**@YstNeris**](https://github.com/YstNeris) for inspiration and useful tips
 * [**@elroje**](https://github.com/elroje) for supporting me all the way
 
-## Licensing
+<!-- ## Licensing
 
-The source code of Mono is [not licensed](https://choosealicense.com/no-permission/) intentionally. Please, use this code for educational purposes only. Do not distribute your own instance of Mono. Instead, you can help by contributing to make Mono better.
+The source code of Mono is [not licensed](https://choosealicense.com/no-permission/) intentionally. Please, use this code for educational purposes only. Do not distribute your own instance of Mono. Instead, you can help by contributing to make Mono better. -->
