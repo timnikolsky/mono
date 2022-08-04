@@ -33,11 +33,7 @@ export default new Listener(
 		})
 		await guild.fetchCustomData()
 
-		if(guild.preferredLocale === 'ru') {
-			await guild.setLanguage('ru')
-		} else {
-			await guild.setLanguage('en')
-		}
+		await guild.setLanguage('ru')
 
 		// Warmly greet new guild's users
 
