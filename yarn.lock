@@ -684,6 +684,14 @@ bl@^4.0.3:
     inherits "^2.0.4"
     readable-stream "^3.4.0"
 
+boticord.js@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/boticord.js/-/boticord.js-2.0.2.tgz#0ca214881f159bee3b5fc1e959d97d2ea10f8c85"
+  integrity sha512-BjZWjlt/klNCBx4rvnEmjHprdvxm6Jh595x46fOTVISJ/RRbzljViH8NpFKTmw4v6o03nHzUFEcZLYxZ4EFVPA==
+  dependencies:
+    tslib "^2.3.1"
+    undici "^4.6.0"
+
 boxen@^6.2.1:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-6.2.1.tgz#b098a2278b2cd2845deef2dff2efc38d329b434d"
@@ -3301,6 +3309,11 @@ typescript@^4.4.3:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
+
+undici@^4.6.0:
+  version "4.16.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-4.16.0.tgz#469bb87b3b918818d3d7843d91a1d08da357d5ff"
+  integrity sha512-tkZSECUYi+/T1i4u+4+lwZmQgLXd4BLGlrc7KZPcLIW7Jpq99+Xpc30ONv7nS6F5UNOxp/HBZSSL9MafUrvJbw==
 
 undici@^5.2.0:
   version "5.2.0"

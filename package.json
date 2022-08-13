@@ -30,6 +30,7 @@
     "@prisma/client": "^3.1.1",
     "ansi-align": "^3.0.1",
     "axios": "^0.24.0",
+    "boticord.js": "^2.0.2",
     "boxen": "^6.2.1",
     "canvas": "^2.9.1",
     "chalk": "^4.1.2",
