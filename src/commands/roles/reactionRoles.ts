@@ -84,6 +84,8 @@ export default class extends Command implements MonoCommand {
 				return
 			}
 
+			console.log(this.guild.members.me!.roles.highest.comparePositionTo(options.role!))
+
 			if (
 				!this.guild.members.me!.permissions.has('ManageRoles')
 				|| this.guild.members.me!.roles.highest.comparePositionTo(options.role!) < 0
