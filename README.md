@@ -5,7 +5,7 @@
 
 ## ⚠ Quick note
 
-As you can see, at the moment code is pretty messy somewhere, GitHub Actions are set up worng, and I'm making unclear commits directly into main branch. I just need some time to figure out how to organize this project :)
+As you can see, at the moment code is pretty messy somewhere, GitHub Actions are set up wrong, and I'm making unclear commits directly into main branch. I just need some time to figure out how to organize this project :)
 
 ## About
 
