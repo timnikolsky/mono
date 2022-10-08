@@ -7,7 +7,7 @@ import { MonoEmbed } from '@base/Embed'
 import { ImageExtension } from '@discordjs/rest'
 import { MonoCommand } from '@typings/index'
 import emojis from '../../assets/emojis'
-import { CommandOptionTypes } from '../../enums'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -16,7 +16,8 @@ export default class extends Command implements MonoCommand {
 			options: [{
 				id: 'user',
 				type: CommandOptionTypes.USER
-			}]
+			}],
+			category: CommandCategory.INFORMATION
 		})
 	}
 

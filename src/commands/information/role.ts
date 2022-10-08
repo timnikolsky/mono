@@ -3,7 +3,7 @@ import { MonoEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
 import { Role } from 'discord.js'
 import Canvas from 'canvas'
 import { formatBoolean, formatTimestamp } from '@utils/formatters'
@@ -17,7 +17,8 @@ export default class extends Command implements MonoCommand {
 				id: 'role',
 				type: CommandOptionTypes.ROLE,
 				required: true
-			}]
+			}],
+			category: CommandCategory.INFORMATION
 		})
 	}
 

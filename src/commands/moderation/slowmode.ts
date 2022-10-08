@@ -4,7 +4,7 @@ import MonoGuild from '@base/discord.js/Guild'
 import { MonoEmbed } from '@base/Embed'
 import { MonoCommand } from '@typings/index'
 import { TextChannel } from 'discord.js'
-import { CommandOptionTypes } from '../../enums'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -19,7 +19,8 @@ export default class extends Command implements MonoCommand {
 			}],
 			botPermissionsRequired: ['ManageChannels'],
 			userPermissionsRequired: ['ManageChannels'],
-			module: 'moderation'
+			module: 'moderation',
+			category: CommandCategory.MODERATION
 		})
 	}
 
