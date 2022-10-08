@@ -30,6 +30,7 @@ export interface CommandData {
 	userPermissionsRequired?: PermissionResolvable[],
 	disabledGlobally?: boolean,
 	staff?: boolean
+	autocomplete?: (input: number | string) => Promise<{ name: string, value: number | string }[]>
 }
 
 export class MonoCommand extends Command {
@@ -45,7 +46,8 @@ export interface CommandOption {
 	required?: boolean,
 	channelTypes?: ChannelTypes[],
 	minValue?: number,
-	maxValue?: number
+	maxValue?: number,
+	autocomplete?: boolean
 }
 
 export interface CommandOptionChoice {

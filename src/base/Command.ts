@@ -14,6 +14,7 @@ export class Command {
 	userPermissionsRequired?: PermissionResolvable[]
 	module?: keyof GuildModules
 	disabledGlobally!: boolean
+	autocomplete?: (input: number | string) => Promise<{ name: string, value: number | string }[]>
 
 	constructor(guild: MonoGuild, data: CommandData) {
 		this.client = guild.client as Mono
@@ -24,8 +25,17 @@ export class Command {
 		this.userPermissionsRequired = data.userPermissionsRequired
 		this.disabledGlobally = !!data.disabledGlobally
 		this.module = data.module
+		this.autocomplete = data.autocomplete
 	}
 
 	// Just for typing
 	async execute(context: CommandContext, options: any) {}
+
+	get hasSubcommands() {
+		return this.options.some(option => option.type === CommandOptionTypes.SUB_COMMAND)
+	}
+
+	get hasSubcommandGroups() {
+		return this.options.some(option => option.type === CommandOptionTypes.SUB_COMMAND_GROUP)
+	}
 }

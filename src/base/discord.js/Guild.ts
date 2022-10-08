@@ -3,7 +3,7 @@ import { RawGuildData } from 'discord.js/typings/rawDataTypes'
 import Mono from '@base/Mono'
 import { TFunction } from 'i18next'
 import { generateOptions } from '@utils/index'
-import { GuildModules } from '@typings/index'
+import { GuildModules, MonoCommand } from '@typings/index'
 import Console from '@utils/console'
 import { getTranslatorFunction } from '@utils/localization'
 import { Command } from '@base/Command'
@@ -13,6 +13,7 @@ export default class MonoGuild extends Guild {
 	client!: Mono
 	modules!: GuildModules
 	modulesRaw!: object
+	initializedCommands?: MonoCommand[]
 
 	private customData: any = null
 
@@ -50,12 +51,13 @@ export default class MonoGuild extends Guild {
 
 	public generateCommands(): ChatInputApplicationCommandData[] {
 		const t = getTranslatorFunction(this.language)
-		let generatedCommands = this.client.commands
-			.map((CommandClass) => {
-				let command = new CommandClass(this)
-				if(command.disabledGlobally) return
-				if(command.module && !this.modules[command.module].enabled) return
 
+		this.initializedCommands = this.client.commands
+			.map(command => new command(this))
+			.filter(command => !command.disabledGlobally && (!command.module || this.modules[command.module].enabled))
+
+		let generatedCommands = this.initializedCommands
+			.map((command) => {
 				return {
 					name: command.id,
 					description: t(`commands:${command.id}._data.description`),
@@ -65,10 +67,7 @@ export default class MonoGuild extends Guild {
 					}),
 				} as ChatInputApplicationCommandData
 			})
-		// Remove empty entries from array
-		generatedCommands = generatedCommands.filter(Boolean)
 
-		// @ts-expect-error
 		return generatedCommands
 	}
 
