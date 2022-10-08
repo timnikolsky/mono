@@ -1,5 +1,5 @@
 import { CommandOptionTypes } from '../enums'
-import { CommandOption } from '@typings/index'
+import { CommandOption, GuildModules } from '@typings/index'
 import { ApplicationCommandOptionData, ApplicationCommandOptionType } from 'discord.js'
 import MonoGuild from '@base/discord.js/Guild'
 import { getTranslatorFunction } from '@utils/localization'
@@ -112,30 +112,28 @@ export function generateOptions(guild: MonoGuild, optionsRaw: CommandOption[], c
 		}
 
 		return {
-			type: type,
+			type,
 			name: option.id,
-			// TODO: clean
 			description,
 			options: option.options ? generateOptions(guild, option.options, {
 				rootCommandId: commandsIds.rootCommandId,
 				subCommandId: commandsIds.subCommandId ?? option.id,
 				subSubCommandId: commandsIds.subCommandId ? option.id : undefined
 			}) : [],
-			required: !!option.required,
+			required: option.required,
 			choices:
 				option.type === CommandOptionTypes.MODULE
-					? Object.keys(guild.modules).map(moduleId => ({
-						// @ts-ignore
+					? (Object.keys(guild.modules) as (keyof GuildModules)[]).map(moduleId => ({
 						name: t(`modules:${guild.modules[moduleId].id}.name`),
-						// @ts-ignore
 						value: guild.modules[moduleId].id
 					})) : (option.choices?.map(choice => ({
 						name: choice.id,
 						value: choice.value
-					})) || []),
-			channelTypes: option.channelTypes || null,
+					})) ?? []),
+			channelTypes: option.channelTypes ?? null,
 			minValue: option.minValue,
-			maxValue: option.maxValue
+			maxValue: option.maxValue,
+			autocomplete: Boolean(option.autocomplete)
 		}
 	})
 }
