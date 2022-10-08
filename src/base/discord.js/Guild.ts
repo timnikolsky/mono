@@ -83,6 +83,10 @@ export default class MonoGuild extends Guild {
 		}
 	}
 
+	public get isDev(): boolean {
+		return this.client.config.devGuildsIds.includes(this.id)
+	}
+
 	// Custom Data
 
 	public get language(): string {

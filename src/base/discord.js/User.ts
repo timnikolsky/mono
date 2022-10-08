@@ -22,6 +22,23 @@ class MonoUser extends User {
 	}
 
 	public get isStaff() {
-		return this.client.config.staffIds.includes(this.id)
+		if(process.env.NODE_ENV !== 'production') {
+			return this.client.config.staffIds.includes(this.id)
+		} else {
+			const monoLoungeGuild = this.client.guilds.cache.get(this.client.config.monoLoungeGuildId)
+			if(!monoLoungeGuild) {
+				Console.error('Couldn\'t find Mono Lounge guild while checking if user is a staff.')
+				return false
+			}
+
+			const member = monoLoungeGuild.members.cache.get(this.id)
+			if(
+				!member
+				// Check if user has a staff role
+				|| !member.roles.cache.some((role) => this.client.config.staffRolesIds.includes(role.id))
+			) {
+				return false
+			}
+		}
 	}
 }
