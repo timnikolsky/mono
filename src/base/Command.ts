@@ -4,6 +4,7 @@ import Mono from '@base/Mono'
 import MonoGuild from '@base/discord.js/Guild'
 import CommandContext from '@base/CommandContext'
 import Module from '@base/Module'
+import { CommandOptionTypes } from '../enums'
 
 export class Command {
 	client!: Mono
