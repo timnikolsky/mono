@@ -7,6 +7,7 @@ import { GuildModules, MonoCommand } from '@typings/index'
 import Console from '@utils/console'
 import { getTranslatorFunction } from '@utils/localization'
 import { Command } from '@base/Command'
+import { dayNight } from '@modules/index'
 
 export default class MonoGuild extends Guild {
 	// public modules: { [x: string]: Module }
@@ -40,7 +41,8 @@ export default class MonoGuild extends Guild {
 			moderation: new this.client.modules.moderation(this, this.customData.modules.moderation),
 			// starboard: new this.client.modules.starboard(this, this.customData.modules.starboard),
 			roles: new this.client.modules.roles(this, this.customData.modules.roles),
-			privateRooms: new this.client.modules.privateRooms(this, this.customData.modules.privateRooms)
+			privateRooms: new this.client.modules.privateRooms(this, this.customData.modules.privateRooms),
+			dayNight: new this.client.modules.dayNight(this, this.customData.modules.dayNight)
 		}
 		Console.info(`Fetched '${this.name}' guild custom data`)
 	}
