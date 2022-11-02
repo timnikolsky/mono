@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/badge/MADE%20BY%20Campfleet-1A1A1A.svg?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACsSURBVHgBnZMBEYMwDEVzU1AJlTBHm4PhYEiYA6QggTnoHDAHf+nRsvaa5gjvLgcF/ifhUyIFAC+uhcv3nrmQjuO6cgU2GcgKi2bUPK0GC1pumuCR541HyKxcThJnwZzWd/QZJYOpnFWYv+pCMgiwEdPZYkwLTzb+BifEO9nAkZ1vafAhO+/9LOaa8j3K1NhBz70kvsiLPfGNAXona46vC7Y/ckS9D0K61nzsH9TPkxmYqxfIAAAAAElFTkSuQmCC&labelColor=1A1A1A">
   </a>
   <a aria-label="License" href="https://github.com/sadnesszephyr/mono/blob/main/LICENSE">
-    <img alt="license" src="https://img.shields.io/github/license/sadnesszephyr/mono">
+    <img alt="license" src="https://img.shields.io/github/license/sadnesszephyr/mono?style=for-the-badge&labelColor=1A1A1A">
   </a>
   <a aria-label="Mono Lounge" href="https://discord.gg/exWW6gGcyw">
     <img alt="" src="https://img.shields.io/discord/913870886254288977?color=%235865F2&labelColor=%231A1A1A&label=Mono%20Lounge&logo=discord&logoColor=%23FFF&style=for-the-badge">
