@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/main.ts --transpileOnly",
-    "dev": "tsnd --respawn --clear -- src/main.ts",
+    "dev": "tsnd --respawn --clear --exit-child -- src/main.ts",
     "rebuild": "yarn build & yarn start"
   },
   "repository": {
