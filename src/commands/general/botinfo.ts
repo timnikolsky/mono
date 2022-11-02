@@ -4,12 +4,14 @@ import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
 import emojis from '../../assets/emojis'
+import { CommandCategory } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
 		super(guild, {
 			id: 'bot-info',
-			options: []
+			options: [],
+			category: CommandCategory.GENERAL
 		})
 	}
 

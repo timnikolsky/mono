@@ -24,6 +24,7 @@ import AutoroleModule from '@modules/Autorole'
 export interface CommandData {
 	id: string,
 	options: CommandOption[],
+	category?: CommandCategory,
 	module?: keyof GuildModules,
 	disableable?: boolean,
 	botPermissionsRequired?: PermissionResolvable[],

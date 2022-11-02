@@ -7,7 +7,7 @@ import { ActivePrivateRoom } from '@prisma/client'
 import { MonoCommand } from '@typings/index'
 import { ChannelType, OverwriteType } from 'discord-api-types/v10'
 import { OverwriteResolvable, User, VoiceChannel } from 'discord.js'
-import { CommandOptionTypes } from '../../enums'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -112,7 +112,8 @@ export default class extends Command implements MonoCommand {
 					required: true
 				}]
 			}],
-			module: 'privateRooms'
+			module: 'privateRooms',
+			category: CommandCategory.PRIVATE_ROOMS
 		})
 	}
 

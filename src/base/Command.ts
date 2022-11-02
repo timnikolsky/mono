@@ -4,13 +4,14 @@ import Mono from '@base/Mono'
 import MonoGuild from '@base/discord.js/Guild'
 import CommandContext from '@base/CommandContext'
 import Module from '@base/Module'
-import { CommandOptionTypes } from '../enums'
+import { CommandCategory, CommandOptionTypes } from '../enums'
 
 export class Command {
 	client!: Mono
 	guild!: MonoGuild
 	id!: string
 	options: CommandOption[]
+	category: CommandCategory
 	botPermissionsRequired?: PermissionResolvable[]
 	userPermissionsRequired?: PermissionResolvable[]
 	module?: keyof GuildModules
@@ -22,6 +23,7 @@ export class Command {
 		this.guild = guild
 		this.id = data.id
 		this.options = data.options
+		this.category = data.category ?? CommandCategory.GENERAL
 		this.botPermissionsRequired = data.botPermissionsRequired
 		this.userPermissionsRequired = data.userPermissionsRequired
 		this.disabledGlobally = !!data.disabledGlobally

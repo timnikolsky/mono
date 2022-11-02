@@ -3,13 +3,15 @@ import CommandContext from '@base/CommandContext'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoEmbed } from '@base/Embed'
 import { MonoCommand } from '@typings/index'
+import { CommandCategory } from '../../enums'
 import emojis from '../../assets/emojis'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
 		super(guild, {
 			id: 'ping',
-			options: []
+			options: [],
+			category: CommandCategory.GENERAL
 		})
 	}
 
