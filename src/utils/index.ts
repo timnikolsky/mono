@@ -133,7 +133,7 @@ export function generateOptions(guild: MonoGuild, optionsRaw: CommandOption[], c
 			channelTypes: option.channelTypes ?? null,
 			minValue: option.minValue,
 			maxValue: option.maxValue,
-			autocomplete: Boolean(option.autocomplete)
+			autocomplete: option.autocomplete
 		}
 	})
 }

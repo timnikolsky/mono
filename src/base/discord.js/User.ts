@@ -7,8 +7,7 @@ import { GuildModules } from '@typings/index'
 import Console from '@utils/console'
 import { getTranslatorFunction } from '@utils/localization'
 
-export default // @ts-ignore
-class MonoUser extends User {
+export default class MonoUser extends User {
 	client!: Mono
 
 	// private customData: any = null
