@@ -14,7 +14,7 @@
     "url": "git+https://github.com/mono-team/bot.git"
   },
   "author": "sadnesszephyr",
-  "license": "ISC",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/mono-team/bot/issues"
   },
