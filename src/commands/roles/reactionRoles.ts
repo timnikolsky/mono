@@ -24,7 +24,6 @@ import emojis from '../../assets/emojis'
 import { formatMessage } from '@utils/formatters'
 import RolesModule from '@modules/Roles'
 import { ReactionRole, ReactionRoleMessage } from '@prisma/client'
-import role from '@commands/information/role'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
