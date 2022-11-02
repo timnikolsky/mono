@@ -43,4 +43,4 @@ This project is currently maintained by [@sadnesszephyr](https://github.com/sadn
 
 Huge thanks to:
 * [@YstNeris](https://github.com/YstNeris) (creator of Uni bot) for showing cool techniques
-* [@elroje](https://github.com/elroje) and [@sadnessyaku](https://github.com/sadnessyaku) for helping with testing and giving ideas
+* [@elroje](https://github.com/elroje) and @sadnessyaku for helping with testing and giving ideas
