@@ -14,6 +14,7 @@ export default class MonoGuild extends Guild {
 	modules!: GuildModules
 	modulesRaw!: object
 
+	areCommandsGenerated = false
 	private customData: any = null
 
 	constructor(client: Mono, data: RawGuildData) {
@@ -67,6 +68,7 @@ export default class MonoGuild extends Guild {
 			})
 		// Remove empty entries from array
 		generatedCommands = generatedCommands.filter(Boolean)
+		this.areCommandsGenerated = true
 
 		// @ts-expect-error
 		return generatedCommands

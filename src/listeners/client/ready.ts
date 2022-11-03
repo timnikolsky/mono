@@ -17,13 +17,8 @@ export default new Listener('ready', async (client: Mono) => {
 		sdcIntegration(client)
 	}
 
-	client.guilds.cache.forEach(async (guild) => {
-		await (guild as MonoGuild).fetchCustomData()
-		try {
-			await (guild as MonoGuild).uploadCommands()
-		} catch (e) {
-			console.log(e)
-		}
+	client.guilds.cache.forEach((guild) => {
+		(guild as MonoGuild).fetchCustomData()
 	})
 
 	client.user?.setStatus('online')
