@@ -4,7 +4,7 @@ import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
 import { CommandCategory, CommandOptionTypes } from '../../enums'
-import { GuildMemberRoleManager, User } from 'discord.js'
+import { GuildMemberRoleManager, PermissionFlagsBits, User } from 'discord.js'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -23,8 +23,8 @@ export default class extends Command implements MonoCommand {
 				minValue: 0,
 				maxValue: 7
 			}],
-			botPermissionsRequired: ['BanMembers'],
-			userPermissionsRequired: ['BanMembers'],
+			botPermissionsRequired: [PermissionFlagsBits.BanMembers],
+			userPermissionsRequired: [PermissionFlagsBits.BanMembers],
 			module: 'moderation',
 			category: CommandCategory.MODERATION
 		})

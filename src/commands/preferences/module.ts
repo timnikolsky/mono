@@ -6,7 +6,7 @@ import CommandContext from '@base/CommandContext'
 import { CommandCategory, CommandOptionTypes } from '../../enums'
 import Module from '@base/Module'
 import moduleIcons from '../../assets/moduleIcons'
-import { ActionRowBuilder, ButtonStyle, Guild, MessageActionRowComponentBuilder, SelectMenuBuilder, SelectMenuInteraction } from 'discord.js'
+import { ActionRowBuilder, ButtonStyle, Guild, MessageActionRowComponentBuilder, PermissionFlagsBits, SelectMenuBuilder, SelectMenuInteraction } from 'discord.js'
 import emojis from '../../assets/emojis'
 import { ButtonBuilder } from '@discordjs/builders'
 
@@ -23,7 +23,7 @@ export default class extends Command implements MonoCommand {
 					required: id !== 'info'
 				}]
 			})),
-			userPermissionsRequired: ['ManageGuild'],
+			userPermissionsRequired: [PermissionFlagsBits.ManageGuild],
 			category: CommandCategory.PREFERENCES
 		})
 	}

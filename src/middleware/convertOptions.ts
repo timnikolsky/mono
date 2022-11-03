@@ -76,7 +76,6 @@ async function convertOption(context: MiddlewareContext, discordOption: CommandI
 			}
 			return emoji
 		case CommandOptionTypes.MESSAGE:
-			console.log(discordOption.options)
 			if (!/(https:\/\/)?(canary\.)?discord(app)?.com\/channels\/\d{18,19}\/\d{18,19}\/\d{18,19}/.test(discordOption.value as string)) {
 				await context.interaction.reply({ embeds: [new ErrorEmbed(t('common:alertMessages.useMessageLink'))] })
 				throw new Error()

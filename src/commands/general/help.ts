@@ -145,7 +145,6 @@ export default class extends Command implements MonoCommand {
 					t('botPermissionsRequired'),
 					emojis.error + ' ' + t('missingPermissions') + '\n' + command.botPermissionsRequired
 						?.map((perm) => {
-							console.log(perm)
 							if(this.guild.members.me?.permissionsIn(interaction.channel! as GuildTextBasedChannel).has(perm)) {
 								return `\`${t('common:permissions.' + perm)}\``
 							} else {

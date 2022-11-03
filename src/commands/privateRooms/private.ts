@@ -5,7 +5,7 @@ import MonoGuildMember from '@base/discord.js/GuildMember'
 import { ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
 import { ActivePrivateRoom } from '@prisma/client'
 import { MonoCommand } from '@typings/index'
-import { ChannelType, OverwriteType } from 'discord-api-types/v10'
+import { ChannelType, OverwriteType, PermissionFlagsBits } from 'discord-api-types/v10'
 import { OverwriteResolvable, User, VoiceChannel } from 'discord.js'
 import { CommandCategory, CommandOptionTypes } from '../../enums'
 
@@ -113,7 +113,8 @@ export default class extends Command implements MonoCommand {
 				}]
 			}],
 			module: 'privateRooms',
-			category: CommandCategory.PRIVATE_ROOMS
+			category: CommandCategory.PRIVATE_ROOMS,
+			userPermissionsRequired: [PermissionFlagsBits.ManageGuild]
 		})
 	}
 

@@ -2,6 +2,7 @@ import {
 	CommandInteraction,
 	Interaction, MessageActionRow, MessageActionRowComponent, MessageComponent,
 	PermissionFlags,
+	PermissionFlagsBits,
 	PermissionResolvable,
 	Role,
 	Snowflake,
@@ -27,8 +28,8 @@ export interface CommandData {
 	category?: CommandCategory,
 	module?: keyof GuildModules,
 	disableable?: boolean,
-	botPermissionsRequired?: PermissionResolvable[],
-	userPermissionsRequired?: PermissionResolvable[],
+	botPermissionsRequired?: bigint[],
+	userPermissionsRequired?: bigint[],
 	disabledGlobally?: boolean,
 	staff?: boolean
 	autocomplete?: (input: number | string) => Promise<{ name: string, value: number | string }[]>

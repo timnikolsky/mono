@@ -4,7 +4,7 @@ import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
 import { CommandCategory, CommandOptionTypes } from '../../enums'
-import { BaseGuildTextChannel } from 'discord.js'
+import { BaseGuildTextChannel, PermissionFlagsBits } from 'discord.js'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -17,8 +17,8 @@ export default class extends Command implements MonoCommand {
 				maxValue: 100,
 				required: true
 			}],
-			botPermissionsRequired: ['ManageMessages'],
-			userPermissionsRequired: ['ManageMessages'],
+			botPermissionsRequired: [PermissionFlagsBits.ManageMessages],
+			userPermissionsRequired: [PermissionFlagsBits.ManageMessages],
 			module: 'moderation',
 			category: CommandCategory.MODERATION
 		})

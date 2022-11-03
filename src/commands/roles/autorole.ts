@@ -5,7 +5,7 @@ import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
 import { CommandCategory, CommandOptionTypes } from '../../enums'
 import RolesModule from '@modules/Roles'
-import { Role } from 'discord.js'
+import { PermissionFlagsBits, Role } from 'discord.js'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -23,7 +23,7 @@ export default class extends Command implements MonoCommand {
 				id: 'disable',
 				type: CommandOptionTypes.SUB_COMMAND
 			}],
-			userPermissionsRequired: ['ManageGuild'],
+			userPermissionsRequired: [PermissionFlagsBits.ManageGuild],
 			module: 'roles',
 			category: CommandCategory.ROLES
 		})

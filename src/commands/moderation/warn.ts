@@ -3,7 +3,7 @@ import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
 import { CommandCategory, CommandOptionTypes } from '../../enums'
-import { GuildMember, GuildMemberRoleManager, User } from 'discord.js'
+import { GuildMember, GuildMemberRoleManager, PermissionFlagsBits, User } from 'discord.js'
 import MonoGuildMember from '@base/discord.js/GuildMember'
 import Paginator from '@base/Paginator'
 import { MonoEmbed, ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
@@ -36,7 +36,7 @@ export default class extends Command implements MonoCommand {
 					required: true
 				}]
 			}],
-			userPermissionsRequired: ['BanMembers'],
+			userPermissionsRequired: [PermissionFlagsBits.BanMembers],
 			module: 'moderation',
 			category: CommandCategory.MODERATION
 		})

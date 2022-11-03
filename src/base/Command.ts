@@ -1,5 +1,5 @@
 import { CommandData, CommandOption, GuildModules } from '../typings'
-import { PermissionResolvable } from 'discord.js'
+import { PermissionFlagsBits, PermissionResolvable } from 'discord.js'
 import Mono from '@base/Mono'
 import MonoGuild from '@base/discord.js/Guild'
 import CommandContext from '@base/CommandContext'
@@ -12,8 +12,8 @@ export class Command {
 	id!: string
 	options: CommandOption[]
 	category: CommandCategory
-	botPermissionsRequired?: PermissionResolvable[]
-	userPermissionsRequired?: PermissionResolvable[]
+	botPermissionsRequired?: bigint[]
+	userPermissionsRequired?: bigint[]
 	module?: keyof GuildModules
 	disabledGlobally!: boolean
 	autocomplete?: (input: number | string) => Promise<{ name: string, value: number | string }[]>
