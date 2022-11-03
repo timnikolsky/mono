@@ -9,10 +9,35 @@ import { MiddlewareResult } from '../../enums'
 import { ErrorEmbed } from '@base/Embed'
 import Console from '@utils/console'
 import { getTranslatorFunction } from '@utils/localization'
+import { generateMemberInfoEmbed } from '@commands/information/user'
 
 export default new Listener(
 	'interactionCreate',
 	async (client: Mono, interaction: CommandInteraction | AutocompleteInteraction) => {
+		if (interaction.isUserContextMenuCommand()) {
+			if(interaction.commandName === 'info') {
+				const user = interaction.options.getUser('user')!
+				const guild = client.guilds.cache.get(interaction.guildId!) as MonoGuild
+				const t = guild.getTranslator()
+				const member = await guild.members.fetch(user.id)
+				if(!member) {
+					await interaction.reply({
+						embeds: [
+							new ErrorEmbed(t('invalidUser'))
+						]
+					})
+					return
+				}
+
+				interaction.reply({
+					embeds: [
+						generateMemberInfoEmbed(member, t)
+					]
+				})
+			}
+			return
+		}
+
 		if (!interaction.isChatInputCommand() && !interaction.isAutocomplete()) return
 		if (!interaction.inGuild()) return
 

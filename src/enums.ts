@@ -34,3 +34,13 @@ export enum DayNightTime {
     DAYTIME,
     NIGHTTIME
 }
+
+export enum CommandCategory {
+	GENERAL = 'general',
+	PREFERENCES = 'preferences',
+	INFORMATION = 'information',
+	MODERATION = 'moderation',
+	ROLES = 'roles',
+	PRIVATE_ROOMS = 'privateRooms',
+	STAFF = 'staff'
+}

@@ -11,19 +11,19 @@ export default new Listener('ready', async (client: Mono) => {
 		} guilds.`
 	)
 
+	await client.application?.commands.set([{
+		name: 'info',
+		type: 2
+	}])
+
 	// Run integrations
 	if (process.env.mode === 'production') {
 		boticordIntegration(client)
 		sdcIntegration(client)
 	}
 
-	client.guilds.cache.forEach(async (guild) => {
-		await (guild as MonoGuild).fetchCustomData()
-		try {
-			await (guild as MonoGuild).uploadCommands()
-		} catch (e) {
-			console.log(e)
-		}
+	client.guilds.cache.forEach((guild) => {
+		(guild as MonoGuild).fetchCustomData()
 
 		if((guild as MonoGuild).modules.dayNight.enabled) {
 			(guild as MonoGuild).modules.dayNight.startTimeout()

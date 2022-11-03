@@ -3,6 +3,7 @@ import { MonoEmbed } from '@base/Embed'
 import { MonoCommand } from '@typings/index'
 import MonoGuild from '@base/discord.js/Guild'
 import CommandContext from '@base/CommandContext'
+import { CommandCategory } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -17,7 +18,8 @@ export default class extends Command implements MonoCommand {
 				type: 5
 			}],
 			staff: true,
-			disabledGlobally: process.env.MODE === 'production'
+			disabledGlobally: process.env.NODE_ENV === 'development' ?? guild.isDev,
+			category: CommandCategory.STAFF
 		})
 	}
 

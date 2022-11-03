@@ -1,4 +1,4 @@
-import { ApplicationCommandType, ChatInputApplicationCommandData, Guild } from 'discord.js'
+import { ApplicationCommandType, ChatInputApplicationCommandData, Guild, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js'
 import { RawGuildData } from 'discord.js/typings/rawDataTypes'
 import Mono from '@base/Mono'
 import { TFunction } from 'i18next'
@@ -16,6 +16,7 @@ export default class MonoGuild extends Guild {
 	modulesRaw!: object
 	initializedCommands?: MonoCommand[]
 
+	areCommandsGenerated = false
 	private customData: any = null
 
 	constructor(client: Mono, data: RawGuildData) {
@@ -60,22 +61,44 @@ export default class MonoGuild extends Guild {
 
 		let generatedCommands = this.initializedCommands
 			.map((command) => {
-				return {
+				return <ChatInputApplicationCommandData>{
 					name: command.id,
 					description: t(`commands:${command.id}._data.description`),
 					type: ApplicationCommandType.ChatInput,
 					options: generateOptions(this, command.options, {
 						rootCommandId: command.id
 					}),
-				} as ChatInputApplicationCommandData
+					defaultMemberPermissions: command.userPermissionsRequired?.reduce((acc, permission) => {
+						return acc | permission
+					}).toString()
+				}
 			})
+		// Remove empty entries from array
+		generatedCommands = generatedCommands.filter(Boolean)
+    
+		this.areCommandsGenerated = true
 
 		return generatedCommands
 	}
 
 	public async uploadCommands() {
 		try {
-			await this.commands.set(this.generateCommands())
+			const generatedCommands = this.generateCommands()
+
+			// For some reason, our Discord.js doesn't allow us to set defaultMemberPermissions field, so we have to do it manually
+			await this.client.rest.put(`/applications/${this.client.user!.id}/guilds/${this.id}/commands`, {
+				body: generatedCommands.map(command => ({
+					name: command.name,
+					description: command.description,
+					type: command.type,
+					options: command.options,
+					// @ts-expect-error
+					default_member_permissions: command.defaultMemberPermissions
+				})),
+				headers: {
+					'Authorization': `Bot ${process.env.DISCORD_TOKEN}`
+				}
+			})
 			Console.info(`Uploaded slash command to guild '${this.name}'`)
 			return true
 		} catch(e) {

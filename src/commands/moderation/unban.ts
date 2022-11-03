@@ -3,8 +3,8 @@ import { ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
-import { BaseGuildTextChannel, GuildMemberRoleManager, User } from 'discord.js'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
+import { BaseGuildTextChannel, GuildMemberRoleManager, PermissionFlagsBits, User } from 'discord.js'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -18,9 +18,10 @@ export default class extends Command implements MonoCommand {
 				id: 'reason',
 				type: CommandOptionTypes.STRING
 			}],
-			botPermissionsRequired: ['BanMembers'],
-			userPermissionsRequired: ['BanMembers'],
-			module: 'moderation'
+			botPermissionsRequired: [PermissionFlagsBits.BanMembers],
+			userPermissionsRequired: [PermissionFlagsBits.BanMembers],
+			module: 'moderation',
+			category: CommandCategory.MODERATION
 		})
 	}
 

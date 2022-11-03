@@ -3,8 +3,8 @@ import CommandContext from '@base/CommandContext'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoEmbed } from '@base/Embed'
 import { MonoCommand } from '@typings/index'
-import { TextChannel } from 'discord.js'
-import { CommandOptionTypes } from '../../enums'
+import { PermissionFlagsBits, TextChannel } from 'discord.js'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -17,9 +17,10 @@ export default class extends Command implements MonoCommand {
 				minValue: 0,
 				maxValue: 21600
 			}],
-			botPermissionsRequired: ['ManageChannels'],
-			userPermissionsRequired: ['ManageChannels'],
-			module: 'moderation'
+			botPermissionsRequired: [PermissionFlagsBits.ManageChannels],
+			userPermissionsRequired: [PermissionFlagsBits.ManageChannels],
+			module: 'moderation',
+			category: CommandCategory.MODERATION
 		})
 	}
 
