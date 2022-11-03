@@ -29,3 +29,8 @@ export enum ReactionRolesMessageMode {
 	ADD_ONLY,
 	REMOVE_ONLY
 }
+
+export enum DayNightTime {
+    DAYTIME,
+    NIGHTTIME
+}

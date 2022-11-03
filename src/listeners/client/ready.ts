@@ -26,11 +26,7 @@ export default new Listener('ready', async (client: Mono) => {
 		}
 
 		if((guild as MonoGuild).modules.dayNight.enabled) {
-			if((guild as MonoGuild).modules.dayNight.daytimeGuildIconUrl) {
-				const channelNames = (guild as MonoGuild).modules.dayNight.channelNames
-				const daytime = (guild as MonoGuild).modules.dayNight.daytime
-				const nighttime = (guild as MonoGuild).modules.dayNight.nighttime
-			}
+			(guild as MonoGuild).modules.dayNight.startTimeout()
 		}
 	})
 

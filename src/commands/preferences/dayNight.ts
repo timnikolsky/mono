@@ -1,10 +1,9 @@
 import { Command } from '@base/Command'
 import CommandContext from '@base/CommandContext'
 import MonoGuild from '@base/discord.js/Guild'
-import { MonoEmbed, SuccessEmbed } from '@base/Embed'
+import { ErrorEmbed, SuccessEmbed } from '@base/Embed'
 import { MonoCommand } from '@typings/index'
 import { CommandOptionTypes } from '../../enums'
-import emojis from '../../assets/emojis'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -53,28 +52,25 @@ export default class extends Command implements MonoCommand {
 				},
 				{
 					id: 'icon',
-					type: CommandOptionTypes.SUB_COMMAND,
+					type: CommandOptionTypes.SUB_COMMAND_GROUP,
 					options: [
-						{
-							id: 'time',
-							type: CommandOptionTypes.STRING,
-							required: true,
-							choices: [
-								{
-									id: 'day',
-									value: 'day'
-								},
-								{
-									id: 'night',
-									value: 'night'
-								}
-							]
-						},
                         {
-                            id: 'image-url',
-                            type: CommandOptionTypes.STRING,
-                            required: true
-                        }
+                            id: 'set',
+                            type: CommandOptionTypes.SUB_COMMAND,
+                            options: [{
+                                id: 'day-image-url',
+                                type: CommandOptionTypes.STRING,
+                                required: true
+                            }, {
+                                id: 'night-image-url',
+                                type: CommandOptionTypes.STRING,
+                                required: true
+                            }]
+                        },
+						{
+							id: 'remove',
+							type: CommandOptionTypes.SUB_COMMAND
+						}
 					]
 				},
                 {
@@ -116,7 +112,8 @@ export default class extends Command implements MonoCommand {
                     ]
                 }
 			]
-		})
+		}),
+        this.module = 'dayNight'
     }
 
 	async execute({ interaction, t }: CommandContext, { subCommand, subCommandGroup, ...options }: CommandOptions) {
@@ -126,6 +123,7 @@ export default class extends Command implements MonoCommand {
             await interaction.reply({
                 embeds: [new SuccessEmbed(t('daytimeChanged'))]
             })
+            return
         }
 
         if(subCommand === 'nighttime') {
@@ -134,19 +132,37 @@ export default class extends Command implements MonoCommand {
             await interaction.reply({
                 embeds: [new SuccessEmbed(t('nighttimeChanged'))]
             })
+            return
         }
 
-        if(subCommand === 'icon') {
-            const { time, imageUrl } = options
-            if(time === 'day') {
-                await this.guild.modules.dayNight.setDaytimeGuildIconUrl(imageUrl!)
+        if(subCommandGroup === 'icon') {
+            if(subCommand === 'set') {
+                const { dayImageUrl, nightImageUrl } = options
+
+                // image url regex
+                const urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
+
+                if(!urlRegex.test(dayImageUrl!) || !urlRegex.test(nightImageUrl!)) {
+                    await interaction.reply({
+                        embeds: [new ErrorEmbed(t('invalidImageUrl'))]
+                    })
+                    return
+                }
+
+                await this.guild.modules.dayNight.setGuildIconsUrls(dayImageUrl!, nightImageUrl!)
+
                 await interaction.reply({
-                    embeds: [new SuccessEmbed(t('daytimeIconChanged'))]
+                    embeds: [new SuccessEmbed(t('dayNightIconsChanged'))]
                 })
-            } else {
-                await this.guild.modules.dayNight.setNighttimeGuildIconUrl(imageUrl!)
+                
+                return
+            }
+
+            if(subCommand === 'remove') {
+                await this.guild.modules.dayNight.setGuildIconsUrls(null, null)
+
                 await interaction.reply({
-                    embeds: [new SuccessEmbed(t('nighttimeIconChanged'))]
+                    embeds: [new SuccessEmbed(t('dayNightIconsRemoved'))]
                 })
             }
         }
@@ -172,12 +188,13 @@ export default class extends Command implements MonoCommand {
 }
 
 interface CommandOptions {
-	subCommand: 'daytime' | 'nighttime' | 'icon' | 'set' | 'remove',
-    subCommandGroup?: 'channel',
+	subCommand: 'daytime' | 'nighttime' | 'set' | 'remove',
+    subCommandGroup?: 'channel' | 'icon',
     hour?: number,
     minute?: number,
     time?: 'day' | 'night',
-    imageUrl?: string,
+    dayImageUrl?: string,
+    nightImageUrl?: string,
     channel?: string,
     dayName?: string,
     nightName?: string
