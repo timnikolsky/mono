@@ -11,7 +11,12 @@ export default new Listener('ready', async (client: Mono) => {
 		} guilds.`
 	)
 
-	// Run integrations#
+	await client.application?.commands.set([{
+		name: 'info',
+		type: 2
+	}])
+
+	// Run integrations
 	if (process.env.mode === 'production') {
 		boticordIntegration(client)
 		sdcIntegration(client)

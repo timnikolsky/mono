@@ -3,7 +3,7 @@ import { MonoEmbed, ErrorEmbed, InfoEmbed, SuccessEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
 import {
 	Emoji,
 	GuildChannelResolvable,
@@ -16,15 +16,14 @@ import {
 	Role,
 	SelectMenuInteraction,
 	ButtonStyle,
-	MessageActionRowComponentBuilder
+	MessageActionRowComponentBuilder,
+	PermissionFlagsBits
 } from 'discord.js'
-import emoji from '@commands/information/emoji'
 import Paginator from '@base/Paginator'
 import emojis from '../../assets/emojis'
 import { formatMessage } from '@utils/formatters'
 import RolesModule from '@modules/Roles'
 import { ReactionRole, ReactionRoleMessage } from '@prisma/client'
-import role from '@commands/information/role'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -70,8 +69,9 @@ export default class extends Command implements MonoCommand {
 					}]
 				}]
 			}],
-			userPermissionsRequired: ['ManageGuild'],
-			module: 'roles'
+			userPermissionsRequired: [PermissionFlagsBits.ManageGuild],
+			module: 'roles',
+			category: CommandCategory.ROLES
 		})
 	}
 
@@ -83,8 +83,6 @@ export default class extends Command implements MonoCommand {
 				})
 				return
 			}
-
-			console.log(this.guild.members.me!.roles.highest.comparePositionTo(options.role!))
 
 			if (
 				!this.guild.members.me!.permissions.has('ManageRoles')

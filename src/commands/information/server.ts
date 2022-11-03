@@ -6,12 +6,14 @@ import CommandContext from '@base/CommandContext'
 import discordAvatars from '../../assets/discordAvatars'
 import { formatTimestamp, formatUser } from '@utils/formatters'
 import emojis from '../../assets/emojis'
+import { CommandCategory } from '../../enums'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
 		super(guild, {
 			id: 'server',
-			options: []
+			options: [],
+			category: CommandCategory.INFORMATION
 		})
 	}
 

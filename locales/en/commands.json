@@ -10,6 +10,21 @@
 		"users": "Users",
 		"website": "Website"
 	},
+	"help": {
+		"_data": {
+			"description": "Commands info",
+			"options": {
+				"command": {
+					"description": "Command to get info about"
+				}
+			}
+		},
+		"commandListTitle": "Help",
+		"commandListFooter": "Use `/help <command>` to get more info about a command.",
+		"userPermissionsRequired": "Required user permissions",
+		"botPermissionsRequired": "Required bot permissions",
+		"missingPermissions": "Bot missing underlined permissions to execute this command."
+	},
 	"ping": {
 		"_data": {
 			"description": "Ping-pong!"

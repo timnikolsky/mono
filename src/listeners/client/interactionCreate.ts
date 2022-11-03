@@ -1,6 +1,6 @@
 import Listener from '@base/Listener'
 import Mono from '@base/Mono'
-import { CommandInteraction, InteractionType } from 'discord.js'
+import { AutocompleteInteraction, CommandInteraction, InteractionType } from 'discord.js'
 import { Command } from '@base/Command'
 import MonoGuild from '@base/discord.js/Guild'
 import CommandContext from '@base/CommandContext'
@@ -9,14 +9,57 @@ import { MiddlewareResult } from '../../enums'
 import { ErrorEmbed } from '@base/Embed'
 import Console from '@utils/console'
 import { getTranslatorFunction } from '@utils/localization'
+import { generateMemberInfoEmbed } from '@commands/information/user'
 
 export default new Listener(
 	'interactionCreate',
-	async (client: Mono, interaction: CommandInteraction) => {
-		if (!interaction.isChatInputCommand()) return
+	async (client: Mono, interaction: CommandInteraction | AutocompleteInteraction) => {
+		if (interaction.isUserContextMenuCommand()) {
+			if(interaction.commandName === 'info') {
+				const user = interaction.options.getUser('user')!
+				const guild = client.guilds.cache.get(interaction.guildId!) as MonoGuild
+				const t = guild.getTranslator()
+				const member = await guild.members.fetch(user.id)
+				if(!member) {
+					await interaction.reply({
+						embeds: [
+							new ErrorEmbed(t('invalidUser'))
+						]
+					})
+					return
+				}
+
+				interaction.reply({
+					embeds: [
+						generateMemberInfoEmbed(member, t)
+					]
+				})
+			}
+			return
+		}
+
+		if (!interaction.isChatInputCommand() && !interaction.isAutocomplete()) return
 		if (!interaction.inGuild()) return
 
 		const command: Command = new (client.commands.filter(command => new command(interaction.guild as MonoGuild).id === interaction.commandName)[0])(interaction.guild as MonoGuild)
+
+		if(interaction instanceof AutocompleteInteraction) {
+			const focusedOption = await interaction.options.getFocused(true)
+
+			if(command.autocomplete) {
+				let result = await command.autocomplete(focusedOption.value)
+
+				if(result.length > 25) {
+					result = result.slice(0, 25)
+					Console.warning(`Autocomplete result for \`${interaction.commandName}\` command was longer than 25 items, so it was cut off. You should better handle it in command congfiguration.`)
+				}
+
+				await interaction.respond(result)
+			}
+			
+			return
+		}
+
 
 		const context = new CommandContext(interaction, getTranslatorFunction((interaction.guild as MonoGuild).language, `commands:${command.id}`))
 

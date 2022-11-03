@@ -2,6 +2,7 @@ import {
 	CommandInteraction,
 	Interaction, MessageActionRow, MessageActionRowComponent, MessageComponent,
 	PermissionFlags,
+	PermissionFlagsBits,
 	PermissionResolvable,
 	Role,
 	Snowflake,
@@ -24,12 +25,14 @@ import AutoroleModule from '@modules/Autorole'
 export interface CommandData {
 	id: string,
 	options: CommandOption[],
+	category?: CommandCategory,
 	module?: keyof GuildModules,
 	disableable?: boolean,
-	botPermissionsRequired?: PermissionResolvable[],
-	userPermissionsRequired?: PermissionResolvable[],
+	botPermissionsRequired?: bigint[],
+	userPermissionsRequired?: bigint[],
 	disabledGlobally?: boolean,
 	staff?: boolean
+	autocomplete?: (input: number | string) => Promise<{ name: string, value: number | string }[]>
 }
 
 export class MonoCommand extends Command {
@@ -45,7 +48,8 @@ export interface CommandOption {
 	required?: boolean,
 	channelTypes?: ChannelTypes[],
 	minValue?: number,
-	maxValue?: number
+	maxValue?: number,
+	autocomplete?: boolean
 }
 
 export interface CommandOptionChoice {

@@ -3,10 +3,11 @@ import { SuccessEmbed } from '@base/Embed'
 import MonoGuild from '@base/discord.js/Guild'
 import { MonoCommand } from '@typings/index'
 import CommandContext from '@base/CommandContext'
-import { CommandOptionTypes } from '../../enums'
+import { CommandCategory, CommandOptionTypes } from '../../enums'
 import { getTranslatorFunction } from '@utils/localization'
 import Console from '@utils/console'
 import chalk from 'chalk'
+import { PermissionFlagsBits } from 'discord.js'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -21,7 +22,9 @@ export default class extends Command implements MonoCommand {
 				})),
 				required: true
 			}],
-			disabledGlobally: false
+			disabledGlobally: false,
+			category: CommandCategory.PREFERENCES,
+			userPermissionsRequired: [PermissionFlagsBits.ManageGuild]
 		})
 	}
 

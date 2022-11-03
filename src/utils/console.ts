@@ -2,25 +2,25 @@ import chalk, { BackgroundColor, Color } from 'chalk'
 import { ForegroundColor } from 'chalk'
 
 export default class Console {
-	static log(text: string) {
-		console.log(chalk.gray('Log     ') + ' ' + text)
+	static log(...message: any[]) {
+		console.log(chalk.gray('log     '), ...message)
 	}
-	static success(text: string) {
-		console.log(chalk.green('Success ') + ' ' + text)
+	static success(...message: any[]) {
+		console.log(chalk.green('success '), ...message)
 	}
-	static warning(text: string) {
-		console.log(chalk.yellow('Warning ') + ' ' + text)
+	static warning(...message: any[]) {
+		console.log(chalk.yellow('warning '), ...message)
 	}
-	static error(text: string) {
-		console.log(chalk.red('Error   ') + ' ' + text)
+	static error(...message: any[]) {
+		console.log(chalk.red('error   '), ...message)
 	}
-	static info(text: string) {
-		console.log(chalk.blue('Info    ') + ' ' + text)
+	static info(...message: any[]) {
+		console.log(chalk.blue('info    '), ...message)
 	}
-	static event(text: string) {
-		console.log(chalk.magenta('Event   ') + ' ' + text)
+	static event(...message: any[]) {
+		console.log(chalk.magenta('event   '), ...message)
 	}
-	static action(text: string) {
-		console.log(chalk.cyan('Action  ') + ' ' + text)
+	static action(...message: any[]) {
+		console.log(chalk.cyan('action  '), ...message)
 	}
 }

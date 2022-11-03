@@ -31,7 +31,8 @@ const client = new Mono({
 		IntentsBitField.Flags.GuildMessages,
 		IntentsBitField.Flags.GuildMessageReactions,
 		IntentsBitField.Flags.GuildMembers,
-		IntentsBitField.Flags.GuildVoiceStates
+		IntentsBitField.Flags.GuildVoiceStates,
+		IntentsBitField.Flags.GuildEmojisAndStickers
 	],
 	// Structures were removed in Discord.js v13, but I use fork which return them. See README.md to see why.
 	structures: {

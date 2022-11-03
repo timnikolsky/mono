@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/main.ts --transpileOnly",
-    "dev": "tsnd --respawn --clear -- src/main.ts",
+    "dev": "tsnd --respawn --clear --exit-child -- src/main.ts",
     "rebuild": "yarn build & yarn start"
   },
   "repository": {
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/mono-team/bot.git"
   },
   "author": "sadnesszephyr",
-  "license": "ISC",
+  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/mono-team/bot/issues"
   },
