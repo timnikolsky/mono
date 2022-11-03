@@ -30,7 +30,7 @@ export default class extends Command implements MonoCommand {
 
 		if(!warnings.length) {
 			await interaction.reply({
-				embeds: [new InfoEmbed('noWarnings')]
+				embeds: [new InfoEmbed(t('noWarnings'))]
 			})
 			return
 		}
