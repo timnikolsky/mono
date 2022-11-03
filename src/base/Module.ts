@@ -1,7 +1,7 @@
 import { ModuleData } from '@typings/index'
 import Mono from '@base/Mono'
 import MonoGuild from '@base/discord.js/Guild'
-import { deepmerge } from 'deepmerge-ts'
+import merge from 'deepmerge'
 import Console from '@utils/console'
 import chalk from 'chalk'
 
@@ -25,16 +25,16 @@ export default class Module {
 
 	async modify(input: object) {
 		const guildModulesConfig = this.guild.modulesRaw
-		const result = deepmerge(guildModulesConfig, { [this.id]: input })
+		const result = merge(guildModulesConfig, { [this.id]: input })
 		await this.client.database.guild.update({
 			data: {
+				// @ts-ignore
 				modules: result
 			},
 			where: {
 				id: this.guild.id
 			}
 		})
-		this.guild.modulesRaw = result
 	}
 
 	async setEnabled(enabled: boolean): Promise<void> {

@@ -1,21 +1,19 @@
 export enum CommandOptionTypes {
-    SUB_COMMAND,
-    SUB_COMMAND_GROUP,
-    STRING,
-    INTEGER,
-    NUMBER,
-    BOOLEAN,
-    USER,
-    CHANNEL,
-    MESSAGE,
-    ROLE,
-	MENTIONABLE,
-	ATTACHMENT,
-    EMOJI,
-    DURATION,
-    COMMAND,
-    MODULE,
-    MESSAGE_CONFIG
+	SUB_COMMAND,
+	SUB_COMMAND_GROUP,
+	STRING,
+	INTEGER,
+	NUMBER,
+	BOOLEAN,
+	USER,
+	CHANNEL,
+	MESSAGE,
+	ROLE,
+	EMOJI,
+	DURATION,
+	COMMAND,
+	MODULE,
+	MESSAGE_CONFIG
 }
 
 export enum MiddlewareResult {
@@ -28,11 +26,6 @@ export enum ReactionRolesMessageMode {
 	UNIQUE,
 	ADD_ONLY,
 	REMOVE_ONLY
-}
-
-export enum DayNightTime {
-    DAYTIME,
-    NIGHTTIME
 }
 
 export enum CommandCategory {

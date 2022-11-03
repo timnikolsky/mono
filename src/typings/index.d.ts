@@ -11,7 +11,6 @@ import {
 import { ApplicationCommandOptionTypes, ChannelTypes } from 'discord.js/typings/enums'
 import ModerationModule from '@modules/Moderation'
 import StarboardModule from '@modules/Starboard'
-import DayNightModule from '@modules/DayNight'
 import MonoGuild from '@base/discord.js/Guild'
 import { TFunction } from 'i18next'
 import { Command } from '@base/Command'
@@ -74,7 +73,6 @@ export interface GuildModules {
 	// starboard: StarboardModule,
 	roles: RolesModule,
 	privateRooms: PrivateRoomsModule
-	dayNight: DayNightModule
 }
 
 export type MiddlewareFunction = (context: MiddlewareContext) => Promise<MiddlewareResult>
@@ -93,10 +91,4 @@ export interface CommandReplyPayload {
 	embeds?: Embed[] | Embed,
 	ephemeral?: boolean,
 	components?: MessageActionRowComponent[][] | MessageActionRowComponent[]
-}
-
-export interface ChannelNamesConfig {
-	id: Snowflake,
-	daytimeName: string,
-	nighttimeName: string
 }

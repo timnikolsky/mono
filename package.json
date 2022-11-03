@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/main.ts --transpileOnly",
-    "dev": "tsnd --respawn --exit-child --clear -- src/main.ts",
+    "dev": "tsnd --respawn --clear --exit-child -- src/main.ts",
     "rebuild": "yarn build & yarn start"
   },
   "repository": {
@@ -39,7 +39,6 @@
     "cli-progress": "^3.9.1",
     "color-name-list": "^9.3.0",
     "deepmerge": "^4.2.2",
-    "deepmerge-ts": "^4.2.2",
     "discord-api-types": "^0.33.0",
     "discord.js": "https://gitpkg.now.sh/uni-inc/discord.js/packages/discord.js?8467b28c4be149dce96ba27e49b439a46810a175",
     "dominant-color": "^0.0.1",
