@@ -39,6 +39,12 @@ export function convertOptionType(monoOptionType: any): ApplicationCommandOption
 	if(monoOptionType === CommandOptionTypes.ROLE)
 		return ApplicationCommandOptionType.Role
 
+	if(monoOptionType === CommandOptionTypes.MENTIONABLE)
+		return ApplicationCommandOptionType.Mentionable
+
+	if(monoOptionType === CommandOptionTypes.ATTACHMENT)
+		return ApplicationCommandOptionType.Attachment
+
 	// Custom types
 
 	if(monoOptionType === CommandOptionTypes.MESSAGE)
