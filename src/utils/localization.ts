@@ -1,4 +1,5 @@
 import { TranslatorFunction } from '@typings/index'
+import { PermissionFlagsBits } from 'discord.js'
 
 export function getTranslatorFunction(language: string, context?: string): TranslatorFunction {
 	return (key: string, parameters: { [x: string]: any } = {}) => {
@@ -39,3 +40,7 @@ export function getTranslatorFunction(language: string, context?: string): Trans
 		return resultString
 	}
 }
+
+export const permissionFlagsMap: {
+	[flag: string]: string
+} = Object.entries(PermissionFlagsBits).map(([key, flag]) => [flag, key]).reduce((acc, [key, value]) => ({ ...acc, [key.toString()]: value }), {})

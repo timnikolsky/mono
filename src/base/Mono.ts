@@ -35,31 +35,31 @@ export default class Mono extends Client {
 				for (const arg of args) {
 					if(arg instanceof Guild) {
 						const guild = arg as MonoGuild
-						if(!guild.areCommandsGenerated) {
+						if(guild.loaded && !guild.areCommandsGenerated) {
 							await (arg as MonoGuild).uploadCommands()
 						}
 					}
 					if(arg instanceof Message) {
 						const guild = arg.guild as MonoGuild | null
-						if(guild && !guild.areCommandsGenerated) {
+						if(guild?.loaded && !guild.areCommandsGenerated) {
 							await guild.uploadCommands()
 						}
 					}
 					if(arg instanceof GuildMember) {
 						const guild = arg.guild as MonoGuild
-						if(!guild.areCommandsGenerated) {
+						if(guild.loaded && !guild.areCommandsGenerated) {
 							await guild.uploadCommands()
 						}
 					}
 					if(arg instanceof GuildChannel) {
 						const guild = arg.guild as MonoGuild
-						if(!guild.areCommandsGenerated) {
+						if(guild.loaded && !guild.areCommandsGenerated) {
 							await guild.uploadCommands()
 						}
 					}
 					if(arg instanceof Interaction) {
 						const guild = arg.guild as MonoGuild | null
-						if(guild && !guild.areCommandsGenerated) {
+						if(guild?.loaded && !guild.areCommandsGenerated) {
 							await guild.uploadCommands()
 						}
 					}

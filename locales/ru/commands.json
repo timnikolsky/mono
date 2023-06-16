@@ -452,5 +452,79 @@
 		"opened": "Приватная комната открыта",
 		"transferred": "{{oldHost}} передал(а) свою приватную комнату {{newHost}}",
 		"cantTransferToBot": "Вы не можете передать свою приватную комнату боту!"
+	},
+	"daynight": {
+		"_data": {
+			"subcommands": {
+				"daytime": {
+					"description": "Изменить дневное время (в UTC)",
+					"options": {
+						"hour": {
+							"description": "Час в UTC (0-23)"
+						},
+						"minute": {
+							"description": "Минуты (0-59)"
+						}
+					}
+				},
+				"nighttime": {
+					"description": "Изменить ночное время (в UTC)",
+					"options": {
+						"hour": {
+							"description": "Час в UTC (0-23)"
+						},
+						"minute": {
+							"description": "Минуты (0-59)"
+						}
+					}
+				},
+				"icon": {
+					"subcommands": {
+						"set": {
+							"description": "Изменить дневную и ночную иконки сервера",
+							"options": {
+								"day-image-url": {
+									"description": "URL картинки в качестве дневной иконки сервера"
+								},
+								"night-image-url": {
+									"description": "URL картинки в качестве ночной иконки сервера"
+								}
+							}
+						},
+						"remove": {
+							"description": "Не изменять иконку сервера"
+						}
+					}
+				},
+				"channel": {
+					"subcommands": {
+						"set": {
+							"description": "Изменить дневное и ночное названия для канала",
+							"options": {
+								"channel": {
+									"description": "Канал, название которого будет меняться"
+								},
+								"day-name": {
+									"description": "Дневное название канала"
+								},
+								"night-name": {
+									"description": "Ночное название канала"
+								}
+							}
+						},
+						"remove": {
+							"description": "Не изменять название канала"
+						}
+					}
+				}
+			}
+		},
+		"daytimeChanged": "Дневное время было изменено",
+		"nighttimeChanged": "Ночное время было изменено",
+		"invalidImageUrl": "Вы указали недействительный URL картинки",
+		"dayNightIconsChanged": "Дневная и ночная иконки сервера изменены",
+		"dayNightIconsRemoved": "Иконка сервера больше не будет меняться",
+		"channelSet": "Дневное и ночное названия канала {{channel}} изменены",
+		"channelRemoved": "Название канала {{channel}} больше не будет меняться"
 	}
 }

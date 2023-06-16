@@ -18,7 +18,7 @@ export default new Listener(
 			if(interaction.commandName === 'info') {
 				const user = interaction.options.getUser('user')!
 				const guild = client.guilds.cache.get(interaction.guildId!) as MonoGuild
-				const t = guild.getTranslator()
+				const t = getTranslatorFunction((interaction.guild as MonoGuild).language, `commands:user`)
 				const member = await guild.members.fetch(user.id)
 				if(!member) {
 					await interaction.reply({

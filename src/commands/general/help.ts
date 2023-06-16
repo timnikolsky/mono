@@ -6,6 +6,7 @@ import CommandContext from '@base/CommandContext'
 import { CommandCategory, CommandOptionTypes } from '../../enums'
 import { ActionRowBuilder, GuildTextBasedChannel, MessageActionRowComponentBuilder, SelectMenuBuilder } from 'discord.js'
 import emojis from '../../assets/emojis'
+import { permissionFlagsMap } from '@utils/localization'
 
 export default class extends Command implements MonoCommand {
 	constructor(guild: MonoGuild) {
@@ -103,6 +104,7 @@ export default class extends Command implements MonoCommand {
 				}
 			}
 
+			await this.guild.commands.fetch()
 			const applicationCommand = this.guild.commands.cache.find((cmd) => cmd.name === command.id)
 
 			const helpEmbed = new MonoEmbed()
@@ -121,10 +123,11 @@ export default class extends Command implements MonoCommand {
 							.join('.subcommands.')}${subcommandName ? '.' : ''}description`
 					)
 				)
+				.setThumbnail('https://media.discordapp.net/attachments/858415255422894090/1041107709849776269/image.png')
 				.addField(
 					t('userPermissionsRequired'),
 					command.userPermissionsRequired
-						?.map((perm) => `\`${t('common:permissions.' + perm)}\``)
+						?.map((perm) => `\`${t('common:permissions.' + permissionFlagsMap[perm.toString()])}\``)
 						.join(', ') ?? t('none'),
 					true
 				)
@@ -136,7 +139,7 @@ export default class extends Command implements MonoCommand {
 				helpEmbed.addField(
 					t('botPermissionsRequired'),
 					command.botPermissionsRequired
-						?.map((perm) => `\`${t('common:permissions.' + perm)}\``)
+						?.map((perm) => `\`${t('common:permissions.' + permissionFlagsMap[perm.toString()])}\``)
 						.join(', ') || t('none'),
 					true
 				)
@@ -146,7 +149,7 @@ export default class extends Command implements MonoCommand {
 					emojis.error + ' ' + t('missingPermissions') + '\n' + command.botPermissionsRequired
 						?.map((perm) => {
 							if(this.guild.members.me?.permissionsIn(interaction.channel! as GuildTextBasedChannel).has(perm)) {
-								return `\`${t('common:permissions.' + perm)}\``
+								return `\`${t('common:permissions.' + permissionFlagsMap[perm.toString()])}\``
 							} else {
 								return `__\`${t('common:permissions.' + perm)}\`__`
 							}
@@ -166,6 +169,7 @@ export default class extends Command implements MonoCommand {
 
 		const helpEmbed = new MonoEmbed().setTitle(t('commandListTitle')).setFooter({ text: t('commandListFooter') })
 
+		await this.guild.commands.fetch()
 		const commands = this.guild.initializedCommands!
 
 		const categories: { [category: string]: string[] } = {}
@@ -183,6 +187,8 @@ export default class extends Command implements MonoCommand {
 						const applicationCommandId = this.guild.commands.cache.find(
 							(command) => command.name === cmd
 						)?.id
+						console.log(cmd)
+						console.log(applicationCommandId)
 						return `</${cmd}:${applicationCommandId}>`
 					})
 					.join(', '),

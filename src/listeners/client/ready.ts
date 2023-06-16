@@ -22,8 +22,8 @@ export default new Listener('ready', async (client: Mono) => {
 		sdcIntegration(client)
 	}
 
-	client.guilds.cache.forEach((guild) => {
-		(guild as MonoGuild).fetchCustomData()
+	client.guilds.cache.forEach(async (guild) => {
+		await (guild as MonoGuild).fetchCustomData()
 
 		if((guild as MonoGuild).modules.dayNight.enabled) {
 			(guild as MonoGuild).modules.dayNight.startTimeout()

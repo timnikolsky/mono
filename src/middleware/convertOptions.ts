@@ -5,6 +5,8 @@ import { ErrorEmbed } from '@base/Embed'
 import { getTranslatorFunction } from '@utils/localization'
 import MonoGuild from '@base/discord.js/Guild'
 
+const surrogateEmojiRegex = /(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe23\u20d0-\u20f0]|\ud83c[\udffb-\udfff])?(?:\u200d(?:[^\ud800-\udfff]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe23\u20d0-\u20f0]|\ud83c[\udffb-\udfff])?)*/g
+
 // TODO: try to make this code less messy
 
 export default async function (context: MiddlewareContext) {
@@ -62,7 +64,7 @@ async function convertOption(context: MiddlewareContext, discordOption: CommandI
 			if(/\p{Emoji_Presentation}|\p{Extended_Pictographic}/gmu.test(discordOption.value as string)) {
 				// @ts-expect-error
 				emoji = new Emoji(context.interaction.client, {
-					name: (discordOption.value as string).match(/\p{Emoji_Presentation}|\p{Extended_Pictographic}/gmu)![0]
+					name: (discordOption.value as string).match(surrogateEmojiRegex)![0]
 				})
 			}
 			// If emoji is custom

@@ -3,8 +3,8 @@ import emojis from '../assets/emojis'
 
 export class MonoEmbed extends EmbedBuilder {
 	constructor(data?: EmbedData) {
-		if(!data) data = { color: 0x2F3136 }
-		if(!data.color) data.color = 0x2F3136
+		if(!data) data = { color: 0x2B2D31 }
+		if(!data.color) data.color = 0x2B2D31
 		super(data)
 	}
 

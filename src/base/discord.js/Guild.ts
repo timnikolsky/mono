@@ -10,7 +10,6 @@ import { Command } from '@base/Command'
 import { dayNight } from '@modules/index'
 
 export default class MonoGuild extends Guild {
-	// public modules: { [x: string]: Module }
 	client!: Mono
 	modules!: GuildModules
 	modulesRaw!: object
@@ -81,6 +80,7 @@ export default class MonoGuild extends Guild {
 		return generatedCommands
 	}
 
+	// Throw an error instead of returning boolean
 	public async uploadCommands() {
 		try {
 			const generatedCommands = this.generateCommands()

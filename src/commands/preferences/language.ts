@@ -44,7 +44,7 @@ export default class extends Command implements MonoCommand {
 			Console.error(`'Couldn't upload slash commands to guild '${this.guild.name}'`)
 		}
 
-		Console.action(`'${this.guild.name}' guild language has been changed to ${chalk.bold(languageCode)}`)
+		Console.event(`'${this.guild.name}' guild language has been changed to ${chalk.bold(languageCode)}`)
 	}
 }
 

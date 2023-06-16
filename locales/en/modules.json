@@ -10,5 +10,9 @@
 	"roles": {
 		"name": "Roles",
 		"description": "Easily set up autoroles and reaction roles on your server.\n\nUse `/autorole` command to set up autorole. This role will be assigned to all new users.\n\nUse `/reaction-roles create` command to create reaction roles. These roles will be assigned to users, who react to the message with the specified emojis."
+	},
+	"dayNight": {
+		"name": "Day/Night",
+		"description": "Allows you to set day and night variants of server icon as well as channels names for your server. Every day, at the time you specified, the server icon and channels names will automatically change. Use `/day-night` command to configure."
 	}
 }

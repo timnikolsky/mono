@@ -164,7 +164,7 @@
 		"modes": {
 			"standard": {
 				"name": "Standard",
-				"description": "User gets role when react and looses it when removes reaction"
+				"description": "User gets a role when reacts and loses it when removes their reaction"
 			},
 			"unique": {
 				"name": "Unique",
@@ -172,11 +172,11 @@
 			},
 			"addOnly": {
 				"name": "Add Only",
-				"description": "User can get role, but can't loose it"
+				"description": "User can get a role, but can't lose it"
 			},
 			"removeOnly": {
 				"name": "Remove only",
-				"description": "User looses role when react and can't get it back"
+				"description": "User loses role when reacts and can't get it back"
 			}
 		},
 		"created": "Reaction role created! ({{emoji}} › {{role}})",
@@ -321,19 +321,25 @@
 				"enable": {
 					"description": "Enable module on this server",
 					"options": {
-						"module": "Module you want to enable"
+						"module": {
+							"description": "Module you want to enable"
+						}
 					}
 				},
 				"disable": {
 					"description": "Disable module on this server",
 					"options": {
-						"module": "Module you want to disable"
+						"module": {
+							"description": "Module you want to disable"
+						}
 					}
 				},
 				"info": {
 					"description": "Get information about modules and enable/disable them.",
 					"options": {
-						"module": "Module you want to see information about."
+						"module": {
+							"description": "Module you want to see information about."
+						}
 					}
 				}
 			}
@@ -467,5 +473,79 @@
 		"opened": "Private room has been opened",
 		"transferred": "{{oldHost}} transferred his private room to {{newHost}}",
 		"cantTransferToBot": "You can't transfer your private room to bot!"
+	},
+	"daynight": {
+		"_data": {
+			"subcommands": {
+				"daytime": {
+					"description": "Change daytime (in UTC)",
+					"options": {
+						"hour": {
+							"description": "Hour in UTC (0-23)"
+						},
+						"minute": {
+							"description": "Minutes (0-59)"
+						}
+					}
+				},
+				"nighttime": {
+					"description": "Change nighttime (in UTC)",
+					"options": {
+						"hour": {
+							"description": "Hour in UTC (0-23)"
+						},
+						"minute": {
+							"description": "Minutes (0-59)"
+						}
+					}
+				},
+				"icon": {
+					"subcommands": {
+						"set": {
+							"description": "Set server icon for day and night",
+							"options": {
+								"day-image-url": {
+									"description": "URL to image which will be used as server icon during the day"
+								},
+								"night-image-url": {
+									"description": "URL to image which will be used as server icon during the night"
+								}
+							}
+						},
+						"remove": {
+							"description": "Don't change server icon anymore"
+						}
+					}
+				},
+				"channel": {
+					"subcommands": {
+						"set": {
+							"description": "Set channel name for day and night",
+							"options": {
+								"channel": {
+									"description": "Channel you want to change name for"
+								},
+								"day-name": {
+									"description": "Channel name for day"
+								},
+								"night-name": {
+									"description": "Channel name for night"
+								}
+							}
+						},
+						"remove": {
+							"description": "Don't change channel name anymore"
+						}
+					}
+				}
+			}
+		},
+		"daytimeChanged": "Daytime has been changed",
+		"nighttimeChanged": "Nighttime has been changed",
+		"invalidImageUrl": "Image URL you provided is invalid",
+		"dayNightIconsChanged": "Day and night server icons have been changed",
+		"dayNightIconsRemoved": "Server icon will no longer change",
+		"channelSet": "{{channel}} channel names for day and night have been changed",
+		"channelRemoved": "{{channel}} channel name will no longer change"
 	}
 }
